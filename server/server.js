@@ -1,47 +1,44 @@
 const express = require('express');
-const routes = require('./controller');
-const sequelize = require('./config/connection');
+const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
 
-//set up handlebars
-const exphbs = require('express-handlebars');
-const helpers = require('./utils/helpers');
-//this allows helpers to be used in handlebars
-const hbs = exphbs.create({helpers});
+const {typeDefs, resolvers} = require('./schemas');
+const {authMiddleware} = require('./utils/auth');
+const db = require('./config/connection');
 
-const session = require('express-session');
-
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
-const sess = {
-    //set the secret in your .env
-  secret: 'Super secret secret',
-  cookie: [],
-  resave: false,
-  saveUninitialized: true,
-  stroe: new SequelizeStore({
-    db: sequelize
-  })
-}
-
+const PORT = process.env.PORT || 3001;
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: authMiddleware,
+});
 
 const app = express();
-//sets port for heroku if that is where app is being served
-const PORT = process.env.PORT || 3001;
 
-app.use(session(sess));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-//sets the public folder to static
-app.use(express.static(path.join(__dirname, 'public')));
-//config handle bars for use in express
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
 
-// turn on routes
-app.use(routes);
+// Serve up static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
-// turn on connection to db and server
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
+// Create a new instance of an Apollo server with the GraphQL schema
+const startApolloServer = async (typeDefs, resolvers) => {
+  await server.start();
+  server.applyMiddleware({ app });
+
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    })
+  })
+  };
+  
+  // Call the async function to start the server
+  startApolloServer(typeDefs, resolvers);
