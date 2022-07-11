@@ -34,10 +34,10 @@ const resolvers = {
     },
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
-    }, 
-    stats: async (parent, {_id}) => {
-      return Stats.findOne({_id})
-    }
+    },
+    stats: async (parent, { _id }) => {
+      return Stats.findOne({ _id })
+    },
   },
 
   Mutation: {
@@ -103,7 +103,32 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
+    updateUserStats: async (parent, { username }, context) => {
+      //if (context.user) {
+      //The idea is to save all stats in local storage and only load them back to the server when the page reloads, closes or a request is made to update
+      //this is just temp data for now
+      const data = await User.findOneAndUpdate(
+        { username },
+        {
+          stats: {
+            lastCh: 10,
+            currentCh: 10,
+            volume: 10,
+            horShift: 10,
+            vertShift: 10,
+            horSize: 10,
+            vertSize: 10,
+            watched: [[12, 12, 23], [1, 5, 4, 3]]
+          }
+        }
+      );
+
+      return data;
+      //}
+
+      //throw new AuthenticationError('You need to be logged in!');
+    },
   }
 };
 

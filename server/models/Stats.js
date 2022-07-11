@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const statsSchema = new Schema({
     lastCh: {
         type: Number,
@@ -30,7 +31,10 @@ const statsSchema = new Schema({
         type: Number,
         default: 1
     },
-    watched:[[]]
+    watched:{
+        type: Array,
+        default: [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]]
+    }
 })
 
 module.exports = statsSchema;
