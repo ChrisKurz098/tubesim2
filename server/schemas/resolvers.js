@@ -35,7 +35,7 @@ const resolvers = {
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
     }, 
-    stats: async () => {
+    stats: async (parent, {_id}) => {
       return Stats.findOne({_id})
     }
   },

@@ -11,6 +11,18 @@ const typeDefs = gql`
     stats: [Stats]
   }
 
+  type Stats {
+    _id: ID
+    lastCh: Int
+  currentCh: Int
+  volume: Int
+  horShift: Int
+  vertShift: Int
+  horSize: Float
+  vertSize: Float
+  watched: [[Int]]
+  }
+
   type Thought {
     _id: ID
     thoughtText: String
@@ -38,6 +50,7 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
+    stats(_is: ID!): Stats
   }
 
   type Mutation {

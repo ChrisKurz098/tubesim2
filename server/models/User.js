@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 
-const Stats = require('./Stats.js');
+const statsSchema = require('./Stats.js');
 
 const userSchema = new Schema(
   {
@@ -26,7 +26,8 @@ const userSchema = new Schema(
     channels: {
       type: String
     },
-    stats: Stats,
+    stats: [statsSchema],
+    
     thoughts: [
       {
         type: Schema.Types.ObjectId,

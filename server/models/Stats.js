@@ -1,27 +1,36 @@
 const { Schema, model } = require('mongoose');
 
-const Stats = new Schema({
+const statsSchema = new Schema({
     lastCh: {
-        type: Number
+        type: Number,
+        default: 0
     },
     currentCh: {
-        type: Number
+        type: Number,
+        default: 0
     },
     volume: {
-        type: Number
+        type: Number,
+        default: 0
     },
     horShift: {
-        type: Number
+        type: Number,
+        default: 0
     },
     vertShift: {
-        type: Number
+        type: Number,
+        default: 0
     },
     horSize: {
         type: Number
+        ,
+        default: 1
     },
     vertSize: {
-        type: Number
-    }
+        type: Number,
+        default: 1
+    },
+    watched:[[]]
 })
 
-module.exports = Stats;
+module.exports = statsSchema;
