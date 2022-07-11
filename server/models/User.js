@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+
+const Stats = require('./Stats.js');
+
 const userSchema = new Schema(
   {
     username: {
@@ -20,6 +23,10 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+    channels: {
+      type: String
+    },
+    stats: Stats,
     thoughts: [
       {
         type: Schema.Types.ObjectId,
