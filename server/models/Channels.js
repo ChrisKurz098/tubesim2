@@ -5,11 +5,11 @@ const { Schema, model } = require('mongoose');
 const channelsSchema = new Schema({
     name: {
         type: String,
-        default: "Ch1 - Price is Right"
+        default: ""
     },
     list: {
         Type: Array,
-        default: ['PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5', 'PL8qCHhbAE4pOUkwTUoGISIfrFNO9uXFk5']
+        default: []
     },
     episodes: {
         type: Number,
@@ -17,7 +17,7 @@ const channelsSchema = new Schema({
     },
     randomPoint: {
         type: Boolean,
-        deafult: false
+        deafult: 0
     }
 
 })
