@@ -41,7 +41,9 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
+      //add all the basic user data plus set stats to default values
+      //stats as an empty object populates with default values
+      const user = await User.create({...args, stats: {}});
       const token = signToken(user);
 
       return { token, user };

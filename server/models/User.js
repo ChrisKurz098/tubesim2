@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 
 const statsSchema = require('./Stats.js');
-const channelsSchema = require('./Channels.js');
 
 const userSchema = new Schema(
   {

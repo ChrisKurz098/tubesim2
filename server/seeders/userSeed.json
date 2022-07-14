@@ -5,7 +5,7 @@
         "password" : "kGjRfUNWUIRwfS_", 
         "friends" : [], 
         "thoughts" : [],
-        "stats": {"currentCh": 10}
+        "stats": {}
     },
     { 
         "username" : "Katlyn85", 
@@ -13,7 +13,7 @@
         "password" : "otK5YtXpcalD1cm", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Lessie_Kautzer61", 
@@ -21,7 +21,7 @@
         "password" : "AP3EUTRZoxzsiHn", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Elton_Heaney", 
@@ -29,7 +29,7 @@
         "password" : "3dVgRgSQmrGLaQE", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Josue67", 
@@ -37,7 +37,7 @@
         "password" : "BNsmR75BHDH4na3", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Jaron98", 
@@ -45,14 +45,14 @@
         "password" : "vNVT_y10PBpVaUV", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Colt.Windler", 
         "email" : "Colt.Windler_Corwin@hotmail.com", 
         "password" : "bBDsrGqpDHI1YTa", 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Berta.Schmeler15", 
@@ -60,7 +60,7 @@
         "password" : "_cbdQwR8Vjn4wBk", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Kaley35", 
@@ -68,7 +68,7 @@
         "password" : "OodrBk3d1t5Ddhb", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Bryana.Hackett", 
@@ -76,7 +76,7 @@
         "password" : "WZ3brF0TKThmwU8", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Madge.Feil", 
@@ -84,21 +84,21 @@
         "password" : "oKEuEU4FnlO4Efs", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Alta.Kemmer20", 
         "email" : "Alta.Kemmer20.Gibson@hotmail.com", 
         "password" : "q4PGoZonm_KnlU7", 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Vladimir_Block", 
         "email" : "Vladimir_Block_Feil41@hotmail.com", 
         "password" : "q9AgUcyAQPmK5jJ", 
         "friends" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Mona_Hilll", 
@@ -106,7 +106,7 @@
         "password" : "GkOySb7J56E0Hpz", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Alice_Simonis", 
@@ -114,28 +114,28 @@
         "password" : "ElVXqVGn9Tm_L38", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Ayana.Bogisich", 
         "email" : "Ayana.Bogisich.Stoltenberg@yahoo.com", 
         "password" : "IjiJJXVWzlfLwA9", 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Annabelle79", 
         "email" : "Annabelle7973@hotmail.com", 
         "password" : "vhk6h6KQEJVC_kQ", 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Tyree17", 
         "email" : "Tyree17_Tillman@yahoo.com", 
         "password" : "TLhhBXjOVGKWP43", 
         "friends" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     },
     { 
         "username" : "Eldridge42", 
@@ -143,6 +143,6 @@
         "password" : "dcWBuw3ugFODuNy", 
         "friends" : [], 
         "thoughts" : [] ,
-        "stats": {"currentCh": 0}
+        "stats": {}
     }
 ]

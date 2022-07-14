@@ -35,7 +35,7 @@ const statsSchema = new Schema({
     },
     volume: {
         type: Number,
-        default: 0
+        default: 100
     },
     horShift: {
         type: Number,
