@@ -21,6 +21,15 @@ const typeDefs = gql`
   horSize: Float
   vertSize: Float
   watched: [[Int]]
+  channels: [Channels]
+  }
+
+  type Channels {
+    _id: ID
+    name: String
+    list: [String]
+    episodes: Int
+    randomPont: Boolean
   }
 
   type Thought {
@@ -50,7 +59,7 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
-    stats(_is: ID!): Stats
+    stats(_id: ID!): Stats
   }
 
   type Mutation {

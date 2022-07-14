@@ -10,7 +10,6 @@ const resolvers = {
           .select('-__v -password')
           .populate('thoughts')
           .populate('friends');
-
         return userData;
       }
 
@@ -26,7 +25,7 @@ const resolvers = {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
-        .populate('thoughts');
+        .populate('thoughts')
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -120,6 +119,7 @@ const resolvers = {
             horSize: 10,
             vertSize: 10,
             watched: [[12, 12, 23], [1, 5, 4, 3]]
+
           }
         }
       );
