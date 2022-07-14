@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 
 
-const channelsSchema = new Schema({
+const channelSchema = new Schema({
     name: {
         type: String,
         default: ""
@@ -22,4 +22,4 @@ const channelsSchema = new Schema({
 
 })
 
-module.exports = channelsSchema;
+module.exports = channelSchema;
