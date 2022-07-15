@@ -14,7 +14,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
-import Profile from './pages/Profile';
+import Menu from './pages/Menu';
 import Signup from './pages/Signup';
 
 const httpLink = createHttpLink({
@@ -46,7 +46,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Home />}
+                element={<Home client={client} />}
               />
               <Route
                 path="/login"
@@ -58,7 +58,7 @@ function App() {
               />
               <Route
                 path="/profile"
-                element={<Profile />}
+                element={<Menu/>}
               />
               <Route
                 path="*"
