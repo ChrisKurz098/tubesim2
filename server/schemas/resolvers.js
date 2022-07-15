@@ -105,32 +105,22 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateUserStats: async (parent, { username, localStats }, context) => {
-      //if (context.user) {
+    updateUserStats: async (parent, { localStats }, context) => {
+      if (context.user) {
+        const username = context.user;
       //The idea is to save all stats in local storage and only load them back to the server when the page reloads, closes or a request is made to update
       //this is just temp data for now
       const data = await User.findOneAndUpdate(
         { username },
         {
-          stats: {
-            lastCh: 10,
-            currentCh: 10,
-            volume: 10,
-            horShift: 10,
-            vertShift: 10,
-            horSize: 10,
-            vertSize: 10,
-            watched: [[12, 12, 23], [1, 5, 4, 3]],
-            channels: [ { name: 'Ch: 1 - Gameshows80', list: ['PLuKKJ5FR6_i-G3X2qR9kJ6TRri07AKsJe'], episodes: 194, randPoint: 0 }]
-
-          }
+          stats: localStats
         }
       );
 
       return data;
-      //}
+      }
 
-      //throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
   }
 };
