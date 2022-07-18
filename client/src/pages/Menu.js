@@ -1,16 +1,10 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-
-
-import { useQuery } from '@apollo/client';
-import { QUERY_ME_STATS } from '../utils/queries';
-
 import Auth from '../utils/auth';
 
 const Menu = (props) => {
 
 
-  const { data: userData } = useQuery(QUERY_ME_STATS);
+//get localStorage
 
   if (Auth.loggedIn()) {
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -36,17 +36,24 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+//---React App Component---//
+
 function App() {
+
+  //---STATES---//
+const [menuToggle, setMenuToggle] = useState(false);
+
+//----JSX----//
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
+          <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
           <div className="container">
             <Routes>
               <Route
                 path="/"
-                element={<Home client={client} />}
+                element={<Home client={client} menuToggle={menuToggle} setMenuToggle={setMenuToggle} />}
               />
               <Route
                 path="/login"
@@ -55,10 +62,6 @@ function App() {
               <Route
                 path="/signup"
                 element={<Signup />}
-              />
-              <Route
-                path="/profile"
-                element={<Menu/>}
               />
               <Route
                 path="*"

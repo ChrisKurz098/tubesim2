@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Auth from '../../utils/auth';
 
-const Header = () => {
+const Header = ({menuToggle, setMenuToggle}) => {
   const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -19,7 +19,9 @@ const Header = () => {
         <nav className="text-center">
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile">Me</Link>
+                 <a href='/' onClick={(event) => {event.preventDefault(); setMenuToggle(!menuToggle)}}>
+                Settings
+              </a>
               <a href="/" onClick={logout}>
                 Logout
               </a>

@@ -26,12 +26,13 @@ const Login = (props, context) => {
       const { data } = await login({
         variables: { ...formState },
       });
-
+ 
       Auth.login(data.login.token);
+      localStorage.setItem('TubeSimData', JSON.stringify(data.login.user.stats[0]))
     } catch (e) {
       console.error(e);
     }
-
+    
   
 
     // clear form values
