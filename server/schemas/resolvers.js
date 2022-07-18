@@ -106,11 +106,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     updateUserStats: async (parent, { localStats }, context) => {
-      console.log('LOCAL STATS', localStats)
+   //locatStats sent as JSON string to avoid type miss match
       const parsedStats = JSON.parse(localStats);
+    
       if (context.user) {
-       
-        const username = context.user;
+        const username = context.user.username;
     
       //The idea is to save all stats in local storage and only load them back to the server when the page reloads, closes or a request is made to update
       //this is just temp data for now
@@ -120,17 +120,11 @@ const resolvers = {
           stats: parsedStats
         }
       );
-
+        console.log("--------Local User Data Saved-----------");
+        console.log(data)
       return data;
       }
-      const data = await User.findOneAndUpdate(
-        { username: "bobo" },
-        {
-          stats: parsedStats
-        }
-      );
-      return data;
-      //throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
   }
 };

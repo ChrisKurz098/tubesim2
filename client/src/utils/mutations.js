@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const UPDATE_USER_STATS = gql`
-mutation UpdateUserStats($localStats : String) {
+mutation UpdateUserStats($localStats : String!) {
   updateUserStats(localStats: $localStats) {
     _id
   }

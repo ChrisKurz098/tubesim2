@@ -24,7 +24,7 @@ const Home = ({client}) => {
       console.log(JSON.parse(localStorage.getItem('TubeSimData')))
     }
 
-  }, [userData])
+  }, [])
 
 
 
