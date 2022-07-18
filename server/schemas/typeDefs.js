@@ -5,9 +5,6 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
     stats: [Stats]
   }
 
@@ -29,23 +26,7 @@ const typeDefs = gql`
     name: String
     list: [String]
     episodes: Int
-    randomPont: Boolean
-  }
-
-  type Thought {
-    _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
-  }
-
-  type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
+    randomPoint: Boolean
   }
 
   type Auth {
@@ -57,17 +38,12 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
     stats(_id: ID!): Stats
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String! ): Auth
-    addThought(thoughtText: String!): Thought
-    addReaction(thoughtId: ID!, reactionBody: String!): Thought
-    addFriend(friendId: ID!): User
     updateUserStats(localStats: String!): Stats
   }
 `;
