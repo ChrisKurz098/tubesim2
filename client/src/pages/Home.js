@@ -41,14 +41,18 @@ const Home = ({client}) => {
 
     switch (e.key) {
       case ".": 
-      console.log(localStorage.getItem('TubeSimData'))
-      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } })
-
+      //if menu close, save user data to server
+     if (menuToggle) updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
       setMenuToggle(!menuToggle);
         break;
       default:
     }
   };
+  //listen for window being closed and save local data if so
+  window.addEventListener("beforeunload", function(e){
+    console.log('SAVING BEFORE CLOSE!');
+    updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+ }, false);
 
   document.addEventListener("keyup", logKeyUp);
 

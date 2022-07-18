@@ -120,8 +120,8 @@ const resolvers = {
           stats: parsedStats
         }
       );
-        console.log("--------Local User Data Saved-----------");
-        console.log(data)
+        console.log(`--------Local User Data For ${data.username} Saved-----------`);
+
       return data;
       }
       throw new AuthenticationError('You need to be logged in!');
