@@ -4,9 +4,9 @@ import List from '../components/Menu/List';
 import Edit from '../components/Menu/Edit';
 import OverScan from '../components/Menu/Overscan';
 
-const Menu = ({ menuHover, menuSelection, setMenuSelection }) => {
-  //get user data from local storage
-  const { current: data } = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
+const Menu = ({ menuHover, menuSelection, setMenuSelection, data }) => {
+
+ 
 
 
   if (Auth.loggedIn()) {

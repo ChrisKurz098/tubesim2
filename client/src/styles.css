@@ -114,3 +114,14 @@ header{
     background-color: var(--font--color);
     color: white;
 }
+
+
+#videoFrame{
+    z-index: -100;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    width: 720px;
+    height: 480px;
+    background-color: rgb(4, 4, 215);
+}

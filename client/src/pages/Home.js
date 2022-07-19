@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 /*This is the YT Data api request for first 50 video on a playlist. My API key is here
 https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB50737D8A7BF7BF4&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw
@@ -10,6 +10,7 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_USER_STATS } from '../utils/mutations';
 
 import Menu from './Menu';
+import VideoFrame from '../components/VideoFrame/VideoFrame';
 
 const Home = ({ client, menuToggle, setMenuToggle }) => {
   // fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw").then(response => response.json())
@@ -18,10 +19,13 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
 
+    //get user data from local storage
+  const { current: data } = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
+
   const loggedIn = Auth.loggedIn();
 
 
-  //----Key Detect Loop----//
+  //----Key Input Functions----//
 
   const logKeyUp = (e) => {
     switch (e.key) {
@@ -58,7 +62,8 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     }
 
   }
-  //listen for window being closed and save local data if so
+
+  //listen for window being unloaded and save local data if so
   window.addEventListener("beforeunload", function (e) {
     console.log('SAVING BEFORE CLOSE!');
     updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
@@ -74,11 +79,9 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-      <div className="flex-row justify-space-between">
-
-        {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} /> : null}
-
-      </div>
+        <VideoFrame/>
+        {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
+      
     </main>
   );
 };
