@@ -19,7 +19,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
     //get user data from local storage
   const { current: data } = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
-
+  const [currentCh, setCurrentCh] = useState(data.currentCh);
   const loggedIn = Auth.loggedIn();
 
 
@@ -56,9 +56,19 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return 4;
         })
         break;
+      case "+":
+        const videos = document.querySelectorAll("iframe")
+        setCurrentCh(old => {
+         const next =  (old === videos.length-1) ? (0) : (old+1)
+          videos[next].style.display='block'
+          videos[old].style.display='none'
+          videos[old].muted = true
+
+          return next;
+        })
+      break;
       default:
     }
-
   }
 
   //listen for window being unloaded and save local data if so
@@ -77,7 +87,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-        <VideoFrame data={data}/>
+        <VideoFrame data={data} currentCh={currentCh} setCurrentCh={setCurrentCh}/>
         {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
       
     </main>

@@ -48,7 +48,7 @@ const [menuToggle, setMenuToggle] = useState(false);
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div>
          <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} /> 
           <div className="container">
             <Routes>
