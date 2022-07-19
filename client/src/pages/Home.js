@@ -13,8 +13,6 @@ import Menu from './Menu';
 import VideoFrame from '../components/VideoFrame/VideoFrame';
 
 const Home = ({ client, menuToggle, setMenuToggle }) => {
-  // fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw").then(response => response.json())
-  //   .then(data => console.log(data));
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
@@ -79,7 +77,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-        <VideoFrame/>
+        <VideoFrame data={data}/>
         {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
       
     </main>
