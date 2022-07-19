@@ -13,7 +13,7 @@ header{
     height: 85px;;
 }
 #headerForceOn{
-    opacity: 100;
+    opacity: 1;
 }
 #headerNormal{
     opacity: 0;
@@ -31,16 +31,18 @@ header{
         opacity: 0;
     }
     to {
-        opacity: 100;
+        opacity: 1;
     }
 }
 
 @keyframes headerClose {
     from {
-        opacity: 100;
+        opacity: 1;
     }
 }
-
+.translucent{
+    opacity: .5;
+}
 #channelList {
     animation: headerOpen 100ms;
     display: grid;
@@ -49,13 +51,25 @@ header{
     background-color: var(--background--color);
     color: var(--font--color);
     position: absolute;
+    margin: 0px;
     padding: 0px;
     left: 69px;
-    top: 72px;
+    top: 85px;
     height: 300px;
     width: 582px;
     font-size: 13px;
     list-style-type: none;
+}
+
+.menuBackdrop{
+    background-color: var(--background--color);
+    position: absolute;
+    padding: 0px;
+    left: 69px;
+    top: 85px;
+    height: 300px;
+    width: 582px;
+    font-size: 13px; 
 }
 
 .chListItem {
@@ -90,6 +104,13 @@ header{
 
 .menuOption:hover {
     cursor: pointer;
+    background-color: var(--font--color);
+    color: white;
+}
+
+.menuSelect {
+    cursor: pointer;
+    width: 190px;
     background-color: var(--font--color);
     color: white;
 }

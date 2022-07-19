@@ -20,7 +20,7 @@ const Header = ({menuToggle, setMenuToggle}) => {
           {Auth.loggedIn() ? (
             <>
                  <a href='/' onClick={(event) => {event.preventDefault(); setMenuToggle(!menuToggle)}}>
-                Settings
+                Menu
               </a>
               <a href="/" onClick={logout}>
                 Logout
