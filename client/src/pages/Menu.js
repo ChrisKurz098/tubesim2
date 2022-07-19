@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Auth from '../utils/auth';
 
 const Menu = (props) => {
-
-
-//get localStorage
+  const {current: data} = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
+  console.log(data)
+  //get localStorage
 
   if (Auth.loggedIn()) {
     return (
       <>
-      <div>MENU</div>
-      <div>Channel Edit</div>
-      <div>OverScan</div>
-      <div>Clear Watch History</div>
+          <ul id='channelList'>
+          {data.channels.map((e,i) => {
+           return  <li className='chListItem' key={i}>{e.name}</li>
+          })}
+        </ul>
+
+        <div>Channel Edit</div>
+        <div>OverScan</div>
+        <div>Clear Watch History</div>
       </>
     );
   } else {

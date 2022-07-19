@@ -11,7 +11,7 @@ import { UPDATE_USER_STATS } from '../utils/mutations';
 
 import Menu from './Menu';
 
-const Home = ({client, menuToggle, setMenuToggle}) => {
+const Home = ({ client, menuToggle, setMenuToggle }) => {
   // fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLKE9oP_rYnRdLhG3HW__6ytTwvgSBM9pu&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw").then(response => response.json())
   //   .then(data => console.log(data));
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
@@ -19,7 +19,7 @@ const Home = ({client, menuToggle, setMenuToggle}) => {
 
   const loggedIn = Auth.loggedIn();
 
- 
+
   //----Key Detect Loop----//
   const keyPressed = useRef("");
 
@@ -27,17 +27,17 @@ const Home = ({client, menuToggle, setMenuToggle}) => {
     keyPressed.current = e.key;
 
     switch (e.key) {
-      case ".": 
-      setMenuToggle(!menuToggle);
+      case ".":
+        setMenuToggle(!menuToggle);
         break;
       default:
     }
   };
   //listen for window being closed and save local data if so
-  window.addEventListener("beforeunload", function(e){
-    console.log('SAVING BEFORE CLOSE!');
-    updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
- }, false);
+  window.addEventListener("beforeunload", function (e) {
+      console.log('SAVING BEFORE CLOSE!');
+      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+  }, false);
 
   document.addEventListener("keyup", logKeyUp);
 
@@ -49,7 +49,7 @@ const Home = ({client, menuToggle, setMenuToggle}) => {
     <main>
       <div className="flex-row justify-space-between">
 
-      {loggedIn ? (
+        {loggedIn ? (
           <div className="col-12 col-lg-3 mb-3">
             You're Logged In!
           </div>
