@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import YouTube from 'react-youtube';
 
 /*This is the YT Data api request for first 50 video on a playlist. My API key is here
 https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB50737D8A7BF7BF4&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw
@@ -57,13 +58,13 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         })
         break;
       case "+":
-        const videos = document.querySelectorAll("iframe")
+
+        const videos = document.querySelectorAll(".video")
+        console.log(YouTube.PlayerState)
         setCurrentCh(old => {
          const next =  (old === videos.length-1) ? (0) : (old+1)
           videos[next].style.display='block'
           videos[old].style.display='none'
-          videos[old].muted = true
-
           return next;
         })
       break;
