@@ -43,12 +43,13 @@ function App() {
   //---STATES---//
 const [menuToggle, setMenuToggle] = useState(false);
 
+
 //----JSX----//
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
+         <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} /> 
           <div className="container">
             <Routes>
               <Route
@@ -69,7 +70,6 @@ const [menuToggle, setMenuToggle] = useState(false);
               />
             </Routes>
           </div>
-          <Footer />
         </div>
       </Router>
     </ApolloProvider>
