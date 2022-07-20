@@ -17,10 +17,12 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
+  const events = useRef([])
 
     //get user data from local storage
   const { current: data } = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
   const [currentCh, setCurrentCh] = useState(data.currentCh);
+
   const loggedIn = Auth.loggedIn();
 
 
@@ -60,11 +62,16 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       case "+":
 
         const videos = document.querySelectorAll(".video")
-        console.log(YouTube.PlayerState)
+     
         setCurrentCh(old => {
          const next =  (old === videos.length-1) ? (0) : (old+1)
           videos[next].style.display='block'
           videos[old].style.display='none'
+      
+          events.current[old].mute();
+         events.current[next].unMute();
+         console.log(data.channels[next])
+
           return next;
         })
       break;
@@ -88,7 +95,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-        <VideoFrame data={data} currentCh={currentCh} setCurrentCh={setCurrentCh}/>
+        <VideoFrame data={data} currentCh={currentCh} setCurrentCh={setCurrentCh} events={events}/>
         {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
       
     </main>

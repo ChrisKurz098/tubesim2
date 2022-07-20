@@ -40,6 +40,15 @@ header{
         opacity: 1;
     }
 }
+
+@keyframes hideChDisplay {
+    0% {
+        opacity: 1;
+    }
+    99%{
+        opacity: 1;
+    }
+}
 .translucent{
     opacity: .5;
 }
@@ -124,6 +133,17 @@ header{
     width: 720px;
     height: 480px;
     background-color: rgb(4, 4, 215);
+}
+
+#chDisplay{
+    background-color: var(--background--color-alpha);
+    color: var(--font--color-alpha);
+    position:absolute;
+    top: 30px;
+    left: 80px;
+    animation: hideChDisplay 4000ms;
+    opacity: 0;
+
 }
 iframe{
     z-index: -100;

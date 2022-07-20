@@ -3,15 +3,21 @@ import YouTube from 'react-youtube';
 //--Actual component--//
 
 
-const VideoFrame = ({ data, currentCh, setCurrentCh }) => {
+const VideoFrame = ({ data, currentCh, setCurrentCh, events }) => {
 
-    function onReady(e){
-        console.log(e)
+    const [loading, setLoading] = useState(true)
+
+    function onReady(event){
+      events.current=[...events.current, event.target]
+      events.current.sort((a, b) => (a.id-b.id) )
+      if (events.current.length !== data.channels.length) setLoading(false)
     }
-    
+
+
     return (
         <>
-            {(YouTube.PlayerState.BUFFERING) ? (<>Searching for Signal...</>) : null}
+            {(loading) ? (<>Searching for Signal...</>) : null}
+            <div id="chDisplay" key={`Z${currentCh}`}>{`${data.channels[currentCh].name}`}</div>
             <div id="videoFrame">
                 {
                     data.channels.map((e, i) => {
