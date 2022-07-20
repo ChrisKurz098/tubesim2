@@ -4,7 +4,7 @@ import List from '../components/Menu/List';
 import Edit from '../components/Menu/Edit';
 import OverScan from '../components/Menu/Overscan';
 
-const Menu = ({ menuHover, menuSelection, setMenuSelection, data }) => {
+const Menu = ({ menuHover, menuSelection, setMenuSelection, data, ovrScn, setOvrScn }) => {
 
  
 
@@ -14,7 +14,7 @@ const Menu = ({ menuHover, menuSelection, setMenuSelection, data }) => {
       <div className={(menuSelection === "overscan") ? ("translucent") : ("")}>
         {(menuSelection === 'list') ? (<List data={data} />) : null}
         {(menuSelection === 'edit') ? (<Edit data={data} />) : null}
-        {(menuSelection === 'overscan') ? (<OverScan data={data} />) : null}
+        {(menuSelection === 'overscan') ? (<OverScan data={data} ovrScn={ovrScn} setOvrScn={setOvrScn} setMenuSelection={setMenuSelection} />) : null}
         <ul id='menuOptions'>
           <li className={(menuHover === 0) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("edit")}>Channel Edit</li>
           <li className={(menuHover === 1) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("overscan")}>OverScan</li>
@@ -26,7 +26,7 @@ const Menu = ({ menuHover, menuSelection, setMenuSelection, data }) => {
   } else {
     return (
       <>
-        <div>MENU</div>
+        <div>Make an account for custom settings</div>
 
       </>
     );

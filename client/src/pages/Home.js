@@ -41,79 +41,71 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
-      switch (e.key) {
-        case ".":
-          setMenuHover(0);
-          setMenuToggle(old => (!old));
-          setMenuSelection("list");
-          break;
-        case "ArrowRight":
-          setMenuHover(last => {
-            return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
-          })
-          break;
-        case "ArrowLeft":
-          setMenuHover(last => {
-            return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
-          })
-          break;
-        case "Enter":
-          setMenuHover(current => {
-            switch (current) {
-              case 0: setMenuSelection("edit");
-                break;
-              case 1: setMenuSelection("overscan");
-                break;
-              case 2: setMenuSelection("list");
-                break;
-              default:
-            }
-            return 4;
-          })
-          break;
-        case "+": case "-":
-          const direction = (e.key === "+") ? (1) : (-1);;
-          const videos = document.querySelectorAll(".video")
-          setCurrentCh(old => {
-            let next = (old + direction);
-            if (old === videos.length - 1 && e.key === "+") next = 0;
-            if (next < 0 && e.key === "-") next = videos.length - 1;
-
-            videos[next].style.display = 'block'
-            videos[old].style.display = 'none'
-
-            events.current[old].mute();
-            events.current[next].unMute();
-            console.log(data.channels[next])
-
-            return next;
-          })
-          break;
-        case "=":
-          setSaveToServer(old => (!old));
-          break;
-        default:
+    switch (e.key) {
+      case ".":
+        setMenuHover(0);
+        setMenuToggle(old => (!old));
+        setMenuSelection("list");
+        break;
+      case "ArrowRight":
+        if (menuSelection === 'list') {
+        setMenuHover(last => {
+          return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
+        })
       }
-  }
+        break;
+      case "ArrowLeft":
+        if (menuSelection === 'list') {
+        setMenuHover(last => {
+          return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
+        })}
+        break;
+      case "Enter":
+        setMenuHover(current => {
+          switch (current) {
+            case 0: setMenuSelection("edit");
+              break;
+            case 1: setMenuSelection("overscan");
+              break;
+            case 2: setMenuSelection("list");
+              break;
+            default:
+          }
+          return 4;
+        })
+        break;
+      case "+": case "-":
+        const direction = (e.key === "+") ? (1) : (-1);;
+        const videos = document.querySelectorAll(".video")
+        setCurrentCh(old => {
+          let next = (old + direction);
+          if (old === videos.length - 1 && e.key === "+") next = 0;
+          if (next < 0 && e.key === "-") next = videos.length - 1;
 
+          videos[next].style.display = 'block'
+          videos[old].style.display = 'none'
 
-  useEffect(() => {
-    if (loggedIn) {
-      console.log('saving data.....')
-      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
-      //load current local storage into data
-      data.current = JSON.parse(localStorage.getItem('TubeSimData'))
-      //set up listener for keys
+          events.current[old].mute();
+          events.current[next].unMute();
+          console.log(data.channels[next])
+
+          return next;
+        })
+        break;
+      case "=":
+        setSaveToServer(old => (!old));
+        break;
+      default:
     }
-    if (!loadingPage) document.addEventListener("keyup", logKeyUp);
-
-  }, [saveToServer])
+  }
 
   useEffect(() => {
     //listen for window being unloaded and save local data if so
     window.addEventListener("beforeunload", function (e) {
-      console.log('SAVING BEFORE CLOSE!');
-      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+      if (loggedIn) {
+        console.log('SAVING BEFORE CLOSE!');
+        updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+      }
     }, false);
     //listen for when page finishes loading all content
     window.addEventListener("load", () => {
@@ -134,7 +126,16 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     <main>
       <div id="chDisplay" key={`Z${currentCh}`}>{`${data.channels[currentCh].name}`}</div>
       <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} />
-      {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
+      {(menuToggle) ? <Menu
+        menuHover={menuHover}
+        menuSelection={menuSelection}
+        setMenuSelection={setMenuSelection}
+        data={data}
+        ovrScn={ovrScn}
+        setOvrScn={setOvrScn}
+        setSaveToServer={setSaveToServer}
+
+      /> : null}
 
     </main>
   );
