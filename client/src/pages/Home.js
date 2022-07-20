@@ -19,7 +19,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const [menuSelection, setMenuSelection] = useState("list");
   const events = useRef([])
 
-    //get user data from local storage
+  //get user data from local storage
   const { current: data } = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
   const [currentCh, setCurrentCh] = useState(data.currentCh);
 
@@ -59,22 +59,24 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return 4;
         })
         break;
-      case "+":
-
+      case "+":case "-":
+        const direction = (e.key === "+") ? (1) : (-1);;
         const videos = document.querySelectorAll(".video")
-     
         setCurrentCh(old => {
-         const next =  (old === videos.length-1) ? (0) : (old+1)
-          videos[next].style.display='block'
-          videos[old].style.display='none'
-      
+          let next = (old + direction);
+          if (old === videos.length - 1 && e.key === "+") next = 0; 
+          if (next<0 && e.key === "-") next = videos.length - 1;
+
+          videos[next].style.display = 'block'
+          videos[old].style.display = 'none'
+
           events.current[old].mute();
-         events.current[next].unMute();
-         console.log(data.channels[next])
+          events.current[next].unMute();
+          console.log(data.channels[next])
 
           return next;
         })
-      break;
+        break;
       default:
     }
   }
@@ -95,9 +97,9 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-        <VideoFrame data={data} currentCh={currentCh} setCurrentCh={setCurrentCh} events={events}/>
-        {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
-      
+      <VideoFrame data={data} currentCh={currentCh} setCurrentCh={setCurrentCh} events={events} />
+      {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
+
     </main>
   );
 };
