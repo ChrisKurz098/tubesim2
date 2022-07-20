@@ -1,6 +1,9 @@
 * {
     font-family: monospace;
 }
+body{
+    background-color: black;
+}
 
 :root {
     --font--color: #00B600;
@@ -133,6 +136,18 @@ header{
     width: 720px;
     height: 480px;
     background-color: rgb(4, 4, 215);
+    transform-origin: center center;
+    /* animation: testOverscan 2000ms ease-in 0ms infinite alternate; */
+
+}
+@keyframes testOverscan {
+    from{
+        transform: scale(.5);
+    }
+    to{
+        transform: scale(2);
+    }
+    
 }
 
 #loadingText{

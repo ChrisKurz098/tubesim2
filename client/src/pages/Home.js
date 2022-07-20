@@ -27,6 +27,12 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   //get user data from local storage
   const { current: data } = useRef((loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : (defaultData));
+  const [ovrScn, setOvrScn] = useState({
+    horShift: data.horShift,
+    vertShift: data.vertShift,
+    horSize: data.horSize,
+    vertSize: data.vertSize
+  })
   const [currentCh, setCurrentCh] = useState(data.currentCh);
 
 
@@ -35,8 +41,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
-    console.log('KeyPress')
-
       switch (e.key) {
         case ".":
           setMenuHover(0);
@@ -93,8 +97,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   }
 
 
-
-
   useEffect(() => {
     if (loggedIn) {
       console.log('saving data.....')
@@ -130,7 +132,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   return (
     <main>
       <div id="chDisplay" key={`Z${currentCh}`}>{`${data.channels[currentCh].name}`}</div>
-      <VideoFrame data={data} events={events} loadingPage={loadingPage} />
+      <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} />
       {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
 
     </main>

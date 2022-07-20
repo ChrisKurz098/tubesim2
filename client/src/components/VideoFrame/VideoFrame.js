@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 //--Actual component--//
 
 
-const VideoFrame = ({ data, events, loadingPage }) => {
+const VideoFrame = ({ data, events, loadingPage, ovrScn }) => {
 
 
 
@@ -16,9 +16,10 @@ const VideoFrame = ({ data, events, loadingPage }) => {
 
     return (
         <>
-            {(loadingPage) ? (<div id="loadingText">{`Searching for Signal. Please Wait...`}</div>) : null}
+    {(loadingPage) ? (<div id="loadingText">{`Getting ready. This may take some time...`}</div>) : null}
             
-            <div id="videoFrame">
+            <div id="videoFrame" style={{"transform": `scaleX(${ovrScn.horSize}) scaleY(${ovrScn.vertSize}) translate(${ovrScn.horShift}px, ${ovrScn.vertShift}px)` }}>
+           
                 {
                     data.channels.map((e, i) => {
                         const rndList = Math.floor(Math.random()*e.list.length)
