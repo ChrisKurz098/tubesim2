@@ -119,9 +119,10 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     window.addEventListener("load", () => {
       document.addEventListener("keyup", logKeyUp);
       setLoadingPage(false);
-      events.current[0].unMute();
       const videos = document.querySelectorAll(".video");
       videos[0].style.display = "block";
+      console.log(events, events.current)
+      events.current[0].unMute();
     })
   }, [])
 

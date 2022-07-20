@@ -32,14 +32,13 @@ const Login = (props, context) => {
     } catch (e) {
       console.error(e);
     }
-    
-  
 
     // clear form values
     setFormState({
       email: '',
       password: '',
     });
+    document.location.href="/";
   };
 
   return (

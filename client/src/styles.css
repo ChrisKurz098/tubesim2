@@ -151,6 +151,9 @@ header{
 }
 
 #loadingText{
+    position:absolute;
+    top: 100px;
+    left: 100px;
     animation: loading 500ms ease-in 0ms infinite alternate ;
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
@@ -40,40 +40,40 @@ const client = new ApolloClient({
 
 function App() {
 
-  //---STATES---//
+//---STATES---//
 const [menuToggle, setMenuToggle] = useState(false);
 
 
 //----JSX----//
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div>
-         <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} /> 
-          <div className="container">
-            <Routes>
-              <Route
-                path="/"
-                element={<Home client={client} menuToggle={menuToggle} setMenuToggle={setMenuToggle} />}
-              />
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-              <Route
-                path="/signup"
-                element={<Signup />}
-              />
-              <Route
-                path="*"
-                element={<NoMatch />}
-              />
-            </Routes>
-          </div>
+return (
+  <ApolloProvider client={client}>
+    <Router>
+      <div>
+        <Header menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home client={client} menuToggle={menuToggle} setMenuToggle={setMenuToggle} />}
+            />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/signup"
+              element={<Signup />}
+            />
+            <Route
+              path="*"
+              element={<NoMatch />}
+            />
+          </Routes>
         </div>
-      </Router>
-    </ApolloProvider>
-  );
+      </div>
+    </Router>
+  </ApolloProvider>
+);
 }
 
 export default App;
