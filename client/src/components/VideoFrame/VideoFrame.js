@@ -3,25 +3,27 @@ import YouTube from 'react-youtube';
 //--Actual component--//
 
 
-const VideoFrame = ({ data, currentCh, setCurrentCh, events }) => {
+const VideoFrame = ({ data, events, loadingPage }) => {
 
-    const [loading, setLoading] = useState(true)
+
 
     function onReady(event){
+        event.target.setShuffle();
       events.current=[...events.current, event.target]
       events.current.sort((a, b) => (a.id-b.id) )
-      if (events.current.length !== data.channels.length) setLoading(false)
     }
 
 
     return (
         <>
-            {(loading) ? (<>Searching for Signal...</>) : null}
-            <div id="chDisplay" key={`Z${currentCh}`}>{`${data.channels[currentCh].name}`}</div>
+            {(loadingPage) ? (<div id="loadingText">{`Searching for Signal. Please Wait...`}</div>) : null}
+            
             <div id="videoFrame">
                 {
                     data.channels.map((e, i) => {
+                        const rndList = Math.floor(Math.random()*e.list.length)
                         const playlist = e.list[0];
+                        //const rnd = Math.floor(Math.random()*e.episodes);
                         const opts = {
                             height: '480',
                             width: '720',
@@ -31,8 +33,8 @@ const VideoFrame = ({ data, currentCh, setCurrentCh, events }) => {
                                 modestbranding: 1,
                                 listType: 'playlist',
                                 list: playlist,
-                                index: 1, //this always subtracts one
-                                loop: 1, //loops the playlist
+                                index: 1,
+                                loop: 1, 
                                 autoplay: true,
                                 mute: 1,
                             },

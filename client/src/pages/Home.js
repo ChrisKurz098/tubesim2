@@ -13,82 +13,114 @@ import { UPDATE_USER_STATS } from '../utils/mutations';
 import Menu from './Menu';
 import VideoFrame from '../components/VideoFrame/VideoFrame';
 
+import defaultData from '../utils/defautData'
+
 const Home = ({ client, menuToggle, setMenuToggle }) => {
+  const [saveToServer, setSaveToServer] = useState(false); //this is not actually used as a boolean but chaning it will trigger a refesh of the useEffect
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
+  const [loadingPage, setLoadingPage] = useState(true)
   const events = useRef([])
 
+  const loggedIn = Auth.loggedIn();
+
   //get user data from local storage
-  const { current: data } = useRef(JSON.parse(localStorage.getItem('TubeSimData')));
+  const { current: data } = useRef((loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : (defaultData));
   const [currentCh, setCurrentCh] = useState(data.currentCh);
 
-  const loggedIn = Auth.loggedIn();
+
 
 
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
-    switch (e.key) {
-      case ".":
-        setMenuHover(0);
-        setMenuToggle(old => (!old));
-        setMenuSelection("list");
-        break;
-      case "ArrowRight":
-        setMenuHover(last => {
-          return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
-        })
-        break;
-      case "ArrowLeft":
-        setMenuHover(last => {
-          return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
-        })
-        break;
-      case "Enter":
-        setMenuHover(current => {
-          switch (current) {
-            case 0: setMenuSelection("edit");
-              break;
-            case 1: setMenuSelection("overscan");
-              break;
-            case 2: setMenuSelection("list");
-              break;
-            default:
-          }
-          return 4;
-        })
-        break;
-      case "+":case "-":
-        const direction = (e.key === "+") ? (1) : (-1);;
-        const videos = document.querySelectorAll(".video")
-        setCurrentCh(old => {
-          let next = (old + direction);
-          if (old === videos.length - 1 && e.key === "+") next = 0; 
-          if (next<0 && e.key === "-") next = videos.length - 1;
+    console.log('KeyPress')
 
-          videos[next].style.display = 'block'
-          videos[old].style.display = 'none'
+      switch (e.key) {
+        case ".":
+          setMenuHover(0);
+          setMenuToggle(old => (!old));
+          setMenuSelection("list");
+          break;
+        case "ArrowRight":
+          setMenuHover(last => {
+            return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
+          })
+          break;
+        case "ArrowLeft":
+          setMenuHover(last => {
+            return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
+          })
+          break;
+        case "Enter":
+          setMenuHover(current => {
+            switch (current) {
+              case 0: setMenuSelection("edit");
+                break;
+              case 1: setMenuSelection("overscan");
+                break;
+              case 2: setMenuSelection("list");
+                break;
+              default:
+            }
+            return 4;
+          })
+          break;
+        case "+": case "-":
+          const direction = (e.key === "+") ? (1) : (-1);;
+          const videos = document.querySelectorAll(".video")
+          setCurrentCh(old => {
+            let next = (old + direction);
+            if (old === videos.length - 1 && e.key === "+") next = 0;
+            if (next < 0 && e.key === "-") next = videos.length - 1;
 
-          events.current[old].mute();
-          events.current[next].unMute();
-          console.log(data.channels[next])
+            videos[next].style.display = 'block'
+            videos[old].style.display = 'none'
 
-          return next;
-        })
-        break;
-      default:
-    }
+            events.current[old].mute();
+            events.current[next].unMute();
+            console.log(data.channels[next])
+
+            return next;
+          })
+          break;
+        case "=":
+          setSaveToServer(old => (!old));
+          break;
+        default:
+      }
   }
 
-  //listen for window being unloaded and save local data if so
-  window.addEventListener("beforeunload", function (e) {
-    console.log('SAVING BEFORE CLOSE!');
-    updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
-  }, false);
+
+
 
   useEffect(() => {
-    document.addEventListener("keyup", logKeyUp);
+    if (loggedIn) {
+      console.log('saving data.....')
+      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+      //load current local storage into data
+      data.current = JSON.parse(localStorage.getItem('TubeSimData'))
+      //set up listener for keys
+    }
+    if (!loadingPage) document.addEventListener("keyup", logKeyUp);
+
+  }, [saveToServer])
+
+  useEffect(() => {
+    //listen for window being unloaded and save local data if so
+    window.addEventListener("beforeunload", function (e) {
+      console.log('SAVING BEFORE CLOSE!');
+      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+    }, false);
+    //listen for when page finishes loading all content
+    window.addEventListener("load", () => {
+      document.addEventListener("keyup", logKeyUp);
+      setLoadingPage(false);
+      events.current[0].unMute();
+      const videos = document.querySelectorAll(".video");
+      videos[0].style.display = "block";
+    })
   }, [])
 
   //--JSX--//
@@ -97,7 +129,8 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-      <VideoFrame data={data} currentCh={currentCh} setCurrentCh={setCurrentCh} events={events} />
+      <div id="chDisplay" key={`Z${currentCh}`}>{`${data.channels[currentCh].name}`}</div>
+      <VideoFrame data={data} events={events} loadingPage={loadingPage} />
       {(menuToggle) ? <Menu menuHover={menuHover} menuSelection={menuSelection} setMenuSelection={setMenuSelection} data={data} /> : null}
 
     </main>
