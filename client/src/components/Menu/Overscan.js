@@ -4,6 +4,7 @@ const OverScan = ({ ovrScn, setOvrScn, setMenuHover }) => {
     const [select, setSelect] = useState(0);
     const [saved, setSaved] = useState(false); 
     const selected = useRef(0)
+    //this ensures that the main menu options never change while a sub menu is open
     setMenuHover(4);
     const update = (mod) => {
         //update the state of overscan and shift
