@@ -1,7 +1,8 @@
 * {
     font-family: monospace;
 }
-body{
+
+body {
     background-color: black;
 }
 
@@ -12,16 +13,20 @@ body{
     --background--color-alpha: #373737af;
 }
 
-header{
-    height: 85px;;
+header {
+    height: 85px;
+    ;
 }
-#headerForceOn{
+
+#headerForceOn {
     opacity: 1;
 }
-#headerNormal{
+
+#headerNormal {
     opacity: 0;
     animation: headerClose 200ms;
 }
+
 #headerNormal:hover {
     opacity: 200;
     animation: headerOpen 200ms;
@@ -33,6 +38,7 @@ header{
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -48,13 +54,16 @@ header{
     0% {
         opacity: 1;
     }
-    99%{
+
+    99% {
         opacity: 1;
     }
 }
-.translucent{
+
+.translucent {
     opacity: .7;
 }
+
 #channelList {
     animation: headerOpen 100ms;
     display: grid;
@@ -73,7 +82,7 @@ header{
     list-style-type: none;
 }
 
-.menuBackdrop{
+.menuBackdrop {
     background-color: var(--background--color);
     position: absolute;
     padding: 0px;
@@ -81,26 +90,59 @@ header{
     top: 85px;
     height: 300px;
     width: 582px;
-    font-size: 13px; 
+    font-size: 13px;
 }
 
-#overscanMenu{
+/* OVERSCAN */
+#overscanMenu {
     text-align: center;
     font-size: 25px;
 }
-.osOption{
-    font-size: 25px;;
+
+.osOption {
+    font-size: 25px;
+    ;
 }
-.osSelected{
+
+.osSelected {
     border: var(--font--color) solid;
 }
-.osSelected::before{
+
+.osSelected::before {
     content: "<-  ";
 }
-.osSelected::after{
+
+.osSelected::after {
     content: "  ->";
 }
 
+/* EDIT CH */
+#channelEditMenu {
+    font-size: 18px;
+}
+#chEditListContainer{
+    display: grid;
+    grid-template-rows: repeat(1, min-content);
+    grid-auto-flow: column;
+}
+#chEditList{
+    list-style: none;
+}
+#chEditListOptions{
+    margin-top: 16px;
+    list-style: none;
+    text-align: center;
+}
+#playlistInput {
+    font-size: 14px;
+margin-left: 16px;
+width: 550px;
+height: 100px;
+resize: none;
+
+}
+
+/* MAIN MENU */
 .chListItem {
     margin: 0 13px 0 13px;
 }
@@ -145,10 +187,10 @@ header{
 }
 
 
-#videoFrame{
+#videoFrame {
     z-index: -100;
     position: absolute;
-    top:0px;
+    top: 0px;
     left: 0px;
     width: 720px;
     height: 480px;
@@ -157,41 +199,49 @@ header{
     /* animation: testOverscan 2000ms ease-in 0ms infinite alternate; */
 
 }
+
 @keyframes testOverscan {
-    from{
+    from {
         transform: scale(.5);
     }
-    to{
+
+    to {
         transform: scale(2);
     }
-    
+
 }
 
-#loadingText{
-    position:absolute;
+#loadingText {
+    position: absolute;
     top: 100px;
     left: 100px;
-    animation: loading 500ms ease-in 0ms infinite alternate ;
+    animation: loading 500ms ease-in 0ms infinite alternate;
 }
 
 @keyframes loading {
-    from{opacity: 1;}
-    to{opacity:.1}
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: .1
+    }
 }
 
-#chDisplay{
+#chDisplay {
     background-color: var(--background--color-alpha);
     color: var(--font--color-alpha);
-    position:absolute;
+    position: absolute;
     top: 30px;
     left: 80px;
     animation: hideChDisplay 4000ms;
     opacity: 0;
 
 }
-iframe{
+
+iframe {
     z-index: -100;
 
     width: 720px;
-    height: 480px;  
+    height: 480px;
 }

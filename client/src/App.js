@@ -17,6 +17,8 @@ import NoMatch from './pages/NoMatch';
 import Menu from './pages/Menu';
 import Signup from './pages/Signup';
 
+
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -39,7 +41,7 @@ const client = new ApolloClient({
 //---React App Component---//
 
 function App() {
-
+  
 //---STATES---//
 const [menuToggle, setMenuToggle] = useState(false);
 

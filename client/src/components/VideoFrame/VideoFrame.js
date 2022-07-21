@@ -21,9 +21,9 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn }) => {
             <div id="videoFrame" style={{"transform": `scaleX(${ovrScn.horSize}) scaleY(${ovrScn.vertSize}) translate(${ovrScn.horShift}px, ${ovrScn.vertShift}px)` }}>
            
                 {
-                    data.channels.map((e, i) => {
+                    data.current.channels.map((e, i) => {
                         const rndList = Math.floor(Math.random()*e.list.length)
-                        const playlist = e.list[0];
+                        const playlist = (e.list[0]) ? e.list[0] : "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4";
                         //const rnd = Math.floor(Math.random()*e.episodes);
                         const opts = {
                             height: '480',
@@ -42,7 +42,7 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn }) => {
                         }
                         return (
 
-                            <YouTube key={`${data.channels[i].name}`} style={{ display: "none" }} className="video" id={`${data.channels[i].name}`} opts={opts} onReady={onReady}></YouTube>
+                            <YouTube key={`${data.current.channels[i].name}`} style={{ display: "none" }} className="video" id={`${data.current.channels[i].name}`} opts={opts} onReady={onReady}></YouTube>
                         )
 
                     })

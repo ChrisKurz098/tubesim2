@@ -13,7 +13,7 @@ const Menu = ({ menuHover, menuSelection, setMenuSelection, data, ovrScn, setOvr
     return (
       <div className={(menuSelection === "overscan") ? ("translucent") : ("")}>
         {(menuSelection === 'list') ? (<List data={data} />) : null}
-        {(menuSelection === 'edit') ? (<Edit data={data} />) : null}
+        {(menuSelection === 'edit') ? (<Edit data={data} setMenuHover={setMenuHover} />) : null}
         {(menuSelection === 'overscan') ? (<OverScan data={data} ovrScn={ovrScn} setOvrScn={setOvrScn} setMenuHover={setMenuHover} />) : null}
         <ul id='menuOptions'>
           <li className={(menuHover === 0) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("edit")}>Channel Edit</li>

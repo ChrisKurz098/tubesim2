@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import YouTube from 'react-youtube';
 
 /*This is the YT Data api request for first 50 video on a playlist. My API key is here
 https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB50737D8A7BF7BF4&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw
@@ -12,8 +11,7 @@ import { UPDATE_USER_STATS } from '../utils/mutations';
 
 import Menu from './Menu';
 import VideoFrame from '../components/VideoFrame/VideoFrame';
-
-import defaultData from '../utils/defautData'
+import defaultData from '../utils/defautData';
 
 const Home = ({ client, menuToggle, setMenuToggle }) => {
 
@@ -26,22 +24,20 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const loggedIn = Auth.loggedIn();
 
   //get user data from local storage
-  const { current: data } = useRef((loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : (defaultData));
+  const data = useRef( (loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : defaultData );
+  console.log(data.current)
   const [ovrScn, setOvrScn] = useState({
-    horShift: data.horShift,
-    vertShift: data.vertShift,
-    horSize: data.horSize,
-    vertSize: data.vertSize
+    horShift: data.current.horShift,
+    vertShift: data.current.vertShift,
+    horSize: data.current.horSize,
+    vertSize: data.current.vertSize
   })
-  const [currentCh, setCurrentCh] = useState(data.currentCh);
-
-
-
+  const [currentCh, setCurrentCh] = useState(data.current.currentCh);
 
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
-    console.log(e)
+    console.log(currentCh)
     switch (e.key) {
       case ".":
         setMenuHover(0);
@@ -88,7 +84,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
           events.current[old].mute();
           events.current[next].unMute();
-          console.log(data.channels[next])
+          console.log(data.current.channels[next])
 
           return next;
         })
@@ -98,6 +94,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   }
 
   useEffect(() => {
+
     //listen for window being unloaded and save local data if so
     window.addEventListener("beforeunload", function (e) {
       if (loggedIn) {
@@ -122,7 +119,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-      <div id="chDisplay" key={`Z${currentCh}`}>{`${data.channels[currentCh].name}`}</div>
+      <div id="chDisplay" key={`Z${currentCh}`}>{`${data.current.channels[currentCh].name}`}</div>
       <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} />
       {(menuToggle) ? <Menu
         menuHover={menuHover}

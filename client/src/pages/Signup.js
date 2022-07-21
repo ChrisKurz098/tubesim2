@@ -32,6 +32,7 @@ const Signup = () => {
       });
 
       Auth.login(data.addUser.token);
+      localStorage.setItem('TubeSimData', JSON.stringify(data.login.user.stats[0]))
     } catch (e) {
       console.error(e);
     }
