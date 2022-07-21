@@ -16,7 +16,7 @@ import VideoFrame from '../components/VideoFrame/VideoFrame';
 import defaultData from '../utils/defautData'
 
 const Home = ({ client, menuToggle, setMenuToggle }) => {
-  const [saveToServer, setSaveToServer] = useState(false); //this is not actually used as a boolean but chaning it will trigger a refesh of the useEffect
+
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
@@ -92,9 +92,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return next;
         })
         break;
-      case "=":
-        setSaveToServer(old => (!old));
-        break;
       default:
     }
   }
@@ -133,7 +130,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         data={data}
         ovrScn={ovrScn}
         setOvrScn={setOvrScn}
-        setSaveToServer={setSaveToServer}
+        setMenuHover={setMenuHover}
 
       /> : null}
 
