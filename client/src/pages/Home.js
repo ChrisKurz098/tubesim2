@@ -41,6 +41,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
+    console.log(e)
     switch (e.key) {
       case ".":
         setMenuHover(0);
@@ -106,7 +107,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     }, false);
     //listen for when page finishes loading all content
     window.addEventListener("load", () => {
-      document.addEventListener("keyup", logKeyUp);
+      window.addEventListener("keyup", logKeyUp);
       setLoadingPage(false);
       const videos = document.querySelectorAll(".video");
       videos[0].style.display = "block";
