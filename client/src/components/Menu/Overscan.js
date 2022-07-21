@@ -26,7 +26,6 @@ const OverScan = ({ ovrScn, setOvrScn, setMenuHover }) => {
                 //On page close or refresh, Home will save localStorage back to the server
                 //Mod must be 0. This prevents left or right keys from triggering this switch
                 if (!mod) {
-                    console.log("SAVING LOCALLY...")
                     let data = JSON.parse(localStorage.getItem('TubeSimData'));
                     //needed to get current state but limited by using default DOM eventListener
                     let newOs = {};
@@ -42,7 +41,6 @@ const OverScan = ({ ovrScn, setOvrScn, setMenuHover }) => {
                         horShift: newOs.horShift,
                         vertShift: newOs.vertShift
                     };
-                    console.log(newOs)
 
                     localStorage.setItem('TubeSimData', JSON.stringify(data));
                 };

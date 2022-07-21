@@ -25,7 +25,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   //get user data from local storage
   const data = useRef( (loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : defaultData );
-  console.log(data.current)
   const [ovrScn, setOvrScn] = useState({
     horShift: data.current.horShift,
     vertShift: data.current.vertShift,
@@ -84,8 +83,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
           events.current[old].mute();
           events.current[next].unMute();
-          console.log(data.current.channels[next])
-
           return next;
         })
         break;
@@ -108,7 +105,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       setLoadingPage(false);
       const videos = document.querySelectorAll(".video");
       videos[0].style.display = "block";
-      console.log(events, events.current)
       events.current[0].unMute();
     })
   }, [])
