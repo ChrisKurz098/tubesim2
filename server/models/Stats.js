@@ -19,7 +19,7 @@ const defaultChannels =     [
         { name: "Ch: 16 - 80's B-Movies", list: ['PLKxdKKLx3iRQbB2m8NkfX6e-PwMvNI-Wl'], episodes: 200, randPoint: 0 },
         { name: "Ch: 17 - Vintage Movies", list: ['PLyMSG-Q0Oh8cr6AG1jbptCGW5P6n-_Szz'], episodes: 129, randPoint: 0 },
         { name: 'Ch: 18 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
-        { name: "Ch: 219 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
+        { name: "Ch: 19 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
         { name: "Ch: 20 - NFL 80s", list: ['PLAr_WbjGaCm5laqRScaYFlNiDSrLLW4rn'], episodes: 200, randPoint: 0 },
         { name: "Ch: 21 - Vintage TV", list: ['PLVPqan6x_34F-M2lCiaTzRSX6jxyQbXcL'], episodes: 200, randPoint: 0 },
         {name: "Ch: 22 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},

@@ -267,7 +267,7 @@ const  defaultData = {
             "__typename": "Channels"
         },
         {
-            "name": "Ch: 219 - Horror/SciFi Movies",
+            "name": "Ch: 19 - Horror/SciFi Movies",
             "list": [
                 "PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL"
             ],
