@@ -119,7 +119,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
   return (
     <main>
-      <div id="chDisplay" key={`Z${currentCh}`}>{`${data.current.channels[currentCh].name}`}</div>
+      <div id="chDisplay" key={`Z${currentCh}${menuToggle}`}>{`${data.current.channels[currentCh].name}`}</div>
       <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} />
       {(menuToggle) ? <Menu
         menuHover={menuHover}
