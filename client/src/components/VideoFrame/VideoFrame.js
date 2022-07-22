@@ -8,9 +8,16 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn }) => {
 
 
     function onReady(event){
-        event.target.setShuffle();
+ 
+       
+        console.log(event.target)
       events.current=[...events.current, event.target]
       events.current.sort((a, b) => (a.id-b.id) )
+      setTimeout(()=>  {
+        event.target.setShuffle(true);
+          event.target.nextVideo();
+    }, 100)
+
     }
 
 
