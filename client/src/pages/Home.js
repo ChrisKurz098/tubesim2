@@ -37,7 +37,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
-    console.log(currentCh)
     switch (e.key) {
       case ".":
         setMenuHover(0);
@@ -97,7 +96,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       if (loggedIn) {
         console.log('SAVING BEFORE CLOSE!');
         let local = JSON.parse(localStorage.getItem('TubeSimData'));
-        local.lastCh = chRef.current;
+        local.currentCh = chRef.current;
         console.log(local);
         localStorage.setItem('TubeSimData', JSON.stringify(local))
         updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
@@ -108,8 +107,8 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       window.addEventListener("keyup", logKeyUp);
       setLoadingPage(false);
       const videos = document.querySelectorAll(".video");
-      videos[data.current.lastCh].style.display = "block";
-      events.current[0].unMute();
+      videos[data.current.currentCh].style.display = "block";
+      events.current[currentCh].unMute();
     })
   }, [])
 
