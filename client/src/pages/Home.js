@@ -32,6 +32,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     vertSize: data.current.vertSize
   })
   const [currentCh, setCurrentCh] = useState(data.current.currentCh);
+  const chRef = useRef(currentCh);
 
   //----Key Input Functions----//
 
@@ -77,10 +78,9 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           let next = (old + direction);
           if (old === videos.length - 1 && e.key === "+") next = 0;
           if (next < 0 && e.key === "-") next = videos.length - 1;
-
-          videos[next].style.display = 'block'
-          videos[old].style.display = 'none'
-
+          chRef.current = next;
+          videos[next].style.display = 'block';
+          videos[old].style.display = 'none';
           events.current[old].mute();
           events.current[next].unMute();
           return next;
@@ -96,6 +96,10 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     window.addEventListener("beforeunload", function (e) {
       if (loggedIn) {
         console.log('SAVING BEFORE CLOSE!');
+        let local = JSON.parse(localStorage.getItem('TubeSimData'));
+        local.lastCh = chRef.current;
+        console.log(local);
+        localStorage.setItem('TubeSimData', JSON.stringify(local))
         updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
       }
     }, false);
@@ -104,7 +108,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       window.addEventListener("keyup", logKeyUp);
       setLoadingPage(false);
       const videos = document.querySelectorAll(".video");
-      videos[0].style.display = "block";
+      videos[data.current.lastCh].style.display = "block";
       events.current[0].unMute();
     })
   }, [])
