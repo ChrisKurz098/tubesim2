@@ -35,6 +35,22 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        stats {
+          lastCh
+          currentCh
+          volume
+          horShift
+          vertShift
+          horSize
+          vertSize
+          watched
+          channels {
+            name
+            list
+            episodes
+            randomPoint
+          }
+        }
       }
     }
   }

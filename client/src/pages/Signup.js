@@ -30,9 +30,9 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      console.log(data)
       Auth.login(data.addUser.token);
-      localStorage.setItem('TubeSimData', JSON.stringify(data.login.user.stats[0]))
+      localStorage.setItem('TubeSimData', JSON.stringify(data.addUser.user.stats[0]))
     } catch (e) {
       console.error(e);
     }

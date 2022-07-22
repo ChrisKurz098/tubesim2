@@ -137,9 +137,21 @@ header {
     font-size: 14px;
 margin-left: 16px;
 width: 550px;
-height: 100px;
+height: 75px;
 resize: none;
 
+}
+#chEditSaveBtn{
+    border: none;
+    background-color: var(--background--color);
+    color: var(--font--color);
+    font-size: 24px;;
+    font-family: monospace;
+    margin-left: 256px;
+}
+#chEditSaveBtn:hover{
+    color: var(--background--color);
+    background-color: var(--font--color);
 }
 
 /* MAIN MENU */
