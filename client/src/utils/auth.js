@@ -15,8 +15,8 @@ class AuthService {
     try {
       const decoded = decode(token);
       if (decoded.exp < Date.now() / 1000) {
-        return true;
-      } else return true;//set to true just to disable this function
+        return false;//set to false just to disable this function
+      } else return false;
     } catch (err) {
       return false;
     }
