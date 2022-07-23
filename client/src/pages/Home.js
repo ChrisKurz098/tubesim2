@@ -35,6 +35,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const chRef = useRef(currentCh);
 
   const [curVol, setCurVol] = useState(data.current.volume)
+  const volRef = useRef(curVol);
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
@@ -84,15 +85,19 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           videos[old].style.display = 'none';
           events.current[old].mute();
           events.current[next].unMute();
+          events.current[chRef.current].setVolume(volRef.current);
           return next;
         })
         break;
       case "*": case "/":
         setCurVol(old => {
-          const val = (e.key === "*") ? 4 : -4;
-          if (val + old > 100) return 100;
-          if (val + old < 0) return 0;
-          return old + val;
+          let val = (e.key === "*") ? 4 : -4;
+          val = old + val;
+          if (val> 100) val = 100;
+          if (val< 0) val = 0;
+          volRef.current = val;
+          events.current[chRef.current].setVolume(val);
+          return val;
         })
         break;
       default:
