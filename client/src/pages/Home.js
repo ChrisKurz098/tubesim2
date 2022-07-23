@@ -19,6 +19,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
   const [loadingPage, setLoadingPage] = useState(true)
+  const [chInput, setChInput] = useState('')
   const events = useRef([])
 
   const loggedIn = Auth.loggedIn();
@@ -39,6 +40,28 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
+
+    if (!isNaN(parseInt(e.key))) {
+      setChInput(old => {
+        let input = (old.toString().length === "") ? e.key.toString() : old + e.key;
+        if (input.toString().length === 2) {
+          if (input < 1 || input > 30) return "";
+          setCurrentCh(last => {
+            const next = parseInt(input) - 1;
+            const videos = document.querySelectorAll(".video")
+            videos[next].style.display = 'block';
+            videos[last].style.display = 'none';
+            events.current[next].unMute();
+            events.current[last].mute();
+            chRef.current = next;
+            return next;
+          });
+          return "";
+        }
+        return input;
+      })
+      return
+    }
     switch (e.key) {
       case ".": case ",":
         setMenuHover(0);
@@ -93,17 +116,17 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         setCurVol(old => {
           let val = (e.key === "*") ? 4 : -4;
           val = old + val;
-          if (val> 100) val = 100;
-          if (val< 0) val = 0;
+          if (val > 100) val = 100;
+          if (val < 0) val = 0;
           volRef.current = val;
           events.current[chRef.current].setVolume(val);
           return val;
         })
         break;
       default:
+
     }
   }
-console.log('Vol: ', curVol)
   //--Prep--/
   useEffect(() => {
 
@@ -134,17 +157,17 @@ console.log('Vol: ', curVol)
 
   const volumeRender = () => {
     let result = "["
-    for (let i = 0; i < curVol/4; i++) {
-      const char = (i===12) ? "|" : "-";
-      result +=char;
+    for (let i = 0; i < curVol / 4; i++) {
+      const char = (i === 12) ? "|" : "-";
+      result += char;
     }
-    result +="]";
+    result += "]";
     return result;
   }
   return (
     <main>
-      <div id="chDisplay" key={`Z${currentCh}${menuToggle}`}>{`${data.current.channels[currentCh].name}`}</div>
-      <div id="volDisplay" key={`volume${curVol}`} >{` ${volumeRender()}` }</div>
+      <div id="chDisplay" key={`Z${currentCh}${menuToggle}${chInput}`}>{(chInput === '') ? `${data.current.channels[currentCh].name}` : `Ch: ${chInput}`}</div>
+      <div id="volDisplay" key={`volume${curVol}`} >{` ${volumeRender()}`}</div>
       <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} >
       </VideoFrame>
       {(menuToggle) ? <Menu

@@ -256,7 +256,7 @@ resize: none;
     color: var(--font--color-alpha);
     width: 297px;
     height: 36px;
-    position: relative;
+    position: absolute;
     top: 280px;
     left: 137px;
     animation: hideChDisplay 6000ms;
