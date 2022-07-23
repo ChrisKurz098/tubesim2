@@ -251,6 +251,18 @@ resize: none;
 
 }
 
+#volDisplay{
+    background-color: var(--background--color-alpha);
+    color: var(--font--color-alpha);
+    width: 297px;
+    height: 36px;
+    position: relative;
+    top: 280px;
+    left: 137px;
+    animation: hideChDisplay 6000ms;
+    opacity: 0;
+}
+
 iframe {
     z-index: -100;
 

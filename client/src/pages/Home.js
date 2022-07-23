@@ -24,7 +24,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const loggedIn = Auth.loggedIn();
 
   //get user data from local storage
-  const data = useRef( (loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : defaultData );
+  const data = useRef((loggedIn) ? JSON.parse(localStorage.getItem('TubeSimData')) : defaultData);
   const [ovrScn, setOvrScn] = useState({
     horShift: data.current.horShift,
     vertShift: data.current.vertShift,
@@ -34,27 +34,29 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   const [currentCh, setCurrentCh] = useState(data.current.currentCh);
   const chRef = useRef(currentCh);
 
+  const [curVol, setCurVol] = useState(data.current.volume)
   //----Key Input Functions----//
 
   const logKeyUp = (e) => {
     switch (e.key) {
-      case ".":
+      case ".": case ",":
         setMenuHover(0);
         setMenuToggle(old => (!old));
         setMenuSelection("list");
         break;
       case "ArrowRight":
         if (menuSelection === 'list') {
-        setMenuHover(last => {
-          return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
-        })
-      }
+          setMenuHover(last => {
+            return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
+          })
+        }
         break;
       case "ArrowLeft":
         if (menuSelection === 'list') {
-        setMenuHover(last => {
-          return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
-        })}
+          setMenuHover(last => {
+            return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
+          })
+        }
         break;
       case "Enter":
         setMenuHover(current => {
@@ -85,10 +87,19 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return next;
         })
         break;
+      case "*": case "/":
+        setCurVol(old => {
+          const val = (e.key === "*") ? 4 : -4;
+          if (val + old > 100) return 100;
+          if (val + old < 0) return 0;
+          return old + val;
+        })
+        break;
       default:
     }
   }
-
+console.log('Vol: ', curVol)
+  //--Prep--/
   useEffect(() => {
 
     //listen for window being unloaded and save local data if so
@@ -116,10 +127,21 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
   if (loading) return 'Saving Data...';
   if (error) return `Submission error! ${error.message}`;
 
+  const volumeRender = () => {
+    let result = "["
+    for (let i = 0; i < curVol/4; i++) {
+      const char = (i===12) ? "|" : "-";
+      result +=char;
+    }
+    result +="]";
+    return result;
+  }
   return (
     <main>
       <div id="chDisplay" key={`Z${currentCh}${menuToggle}`}>{`${data.current.channels[currentCh].name}`}</div>
-      <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} />
+      <div id="volDisplay" key={`volume${curVol}`} >{` ${volumeRender()}` }</div>
+      <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} >
+      </VideoFrame>
       {(menuToggle) ? <Menu
         menuHover={menuHover}
         menuSelection={menuSelection}
@@ -128,7 +150,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         ovrScn={ovrScn}
         setOvrScn={setOvrScn}
         setMenuHover={setMenuHover}
-
       /> : null}
 
     </main>
