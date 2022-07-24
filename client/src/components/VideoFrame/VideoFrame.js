@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 //--Actual component--//
 
 
-const VideoFrame = ({ data, events, loadingPage, ovrScn }) => {
+const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
 
 
 
@@ -62,7 +62,8 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn }) => {
                         }
                         return (
 
-                            <YouTube key={`${data.current.channels[i].name}`} style={{ display: "none" }} className="video" id={`${data.current.channels[i].name}`}
+                            <YouTube key={`${data.current.channels[i].name}`} style={{ display: `${(currentCh === i) ? "block": "none"}`}} 
+                                className="video" id={`${data.current.channels[i].name}`}
                                 opts={opts}
                                 onReady={onReady}
                                 onError={onError}

@@ -47,10 +47,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         if (input.toString().length === 2) {
           if (input < 1 || input > 30) return "";
           setCurrentCh(last => {
-            const next = parseInt(input) - 1;
-            const videos = document.querySelectorAll(".video")
-            videos[next].style.display = 'block';
-            videos[last].style.display = 'none';
+            const next = parseInt(input)-1;
             events.current[next].unMute();
             events.current[last].mute();
             chRef.current = next;
@@ -60,7 +57,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         }
         return input;
       })
-      return
+      return;
     }
     switch (e.key) {
       case ".": case ",":
@@ -104,8 +101,6 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           if (old === videos.length - 1 && e.key === "+") next = 0;
           if (next < 0 && e.key === "-") next = videos.length - 1;
           chRef.current = next;
-          videos[next].style.display = 'block';
-          videos[old].style.display = 'none';
           events.current[old].mute();
           events.current[next].unMute();
           events.current[chRef.current].setVolume(volRef.current);
@@ -168,7 +163,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     <main>
       <div id="chDisplay" key={`Z${currentCh}${menuToggle}${chInput}`}>{(chInput === '') ? `${data.current.channels[currentCh].name}` : `Ch: ${chInput}`}</div>
       <div id="volDisplay" key={`volume${curVol}`} >{` ${volumeRender()}`}</div>
-      <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} >
+      <VideoFrame data={data} events={events} loadingPage={loadingPage} ovrScn={ovrScn} currentCh={currentCh} >
       </VideoFrame>
       {(menuToggle) ? <Menu
         menuHover={menuHover}
