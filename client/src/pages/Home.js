@@ -47,7 +47,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
         if (input.toString().length === 2) {
           if (input < 1 || input > 30) return "";
           setCurrentCh(last => {
-            const next = parseInt(input)-1;
+            const next = parseInt(input) - 1;
             events.current[next].unMute();
             events.current[last].mute();
             chRef.current = next;
@@ -93,7 +93,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return 4;
         })
         break;
-      case "+": case "-":
+      case "+": case "-": case "PageUp": case "PageDown":
         const direction = (e.key === "+") ? (1) : (-1);;
         const videos = document.querySelectorAll(".video")
         setCurrentCh(old => {
@@ -118,6 +118,9 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return val;
         })
         break;
+      case "End":
+        events.current[chRef.current].nextVideo();
+        break
       default:
 
     }
