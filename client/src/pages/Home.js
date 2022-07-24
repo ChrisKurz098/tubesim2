@@ -93,7 +93,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return 4;
         })
         break;
-      case "+": case "-": case "PageUp": case "PageDown":
+      case "+": case "-": 
         const direction = (e.key === "+") ? (1) : (-1);;
         const videos = document.querySelectorAll(".video")
         setCurrentCh(old => {
