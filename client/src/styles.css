@@ -257,8 +257,8 @@ resize: none;
     width: 297px;
     height: 36px;
     position: absolute;
-    top: 280px;
-    left: 137px;
+    top: 350px;
+    left: 200px;
     animation: hideChDisplay 6000ms;
     opacity: 0;
 }

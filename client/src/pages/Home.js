@@ -14,7 +14,7 @@ import VideoFrame from '../components/VideoFrame/VideoFrame';
 import defaultData from '../utils/defautData';
 
 const Home = ({ client, menuToggle, setMenuToggle }) => {
-
+  
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");

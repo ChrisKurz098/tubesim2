@@ -30,6 +30,7 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
     }
 
     function onStateChange(event){
+        window.focus();
         if(event.target.data<0) event.target.nextVideo();
     }
 
