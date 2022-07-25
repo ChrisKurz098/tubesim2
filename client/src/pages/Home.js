@@ -93,13 +93,15 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return 4;
         })
         break;
-      case "+": case "-": 
-        const direction = (e.key === "+") ? (1) : (-1);;
+      case "+": case "-": case "PageUp": case "PageDown": 
+      console.log(e.key)
+        const direction = (e.key === "+" || e.key === "PageUp") ? (1) : (-1);;
         const videos = document.querySelectorAll(".video")
         setCurrentCh(old => {
+          const up = (e.key === "+" || e.key === "PageUp") ? true : false;
           let next = (old + direction);
-          if (old === videos.length - 1 && e.key === "+") next = 0;
-          if (next < 0 && e.key === "-") next = videos.length - 1;
+          if (old === videos.length - 1 && up) next = 0;
+          if (next < 0 && !up) next = videos.length - 1;
           chRef.current = next;
           events.current[old].mute();
           events.current[next].unMute();
