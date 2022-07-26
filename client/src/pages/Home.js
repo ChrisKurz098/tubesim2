@@ -1,9 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-/*This is the YT Data api request for first 50 video on a playlist. My API key is here
-https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLB50737D8A7BF7BF4&key=AIzaSyCZuVb4_kTsIKbDBDGMM-KDRnIHyUoJyvw
-*/
-
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 
@@ -14,13 +10,13 @@ import VideoFrame from '../components/VideoFrame/VideoFrame';
 import defaultData from '../utils/defautData';
 
 const Home = ({ client, menuToggle, setMenuToggle }) => {
-  
+
   const [updateStats, { updatedData, loading, error }] = useMutation(UPDATE_USER_STATS);
   const [menuHover, setMenuHover] = useState(0);
   const [menuSelection, setMenuSelection] = useState("list");
-  const [loadingPage, setLoadingPage] = useState(true)
-  const [chInput, setChInput] = useState('')
-  const events = useRef([])
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [chInput, setChInput] = useState('');
+  const events = useRef([]);
 
   const loggedIn = Auth.loggedIn();
 
@@ -31,7 +27,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     vertShift: data.current.vertShift,
     horSize: data.current.horSize,
     vertSize: data.current.vertSize
-  })
+  });
   const [currentCh, setCurrentCh] = useState(data.current.currentCh);
   const chRef = useRef(currentCh);
 
@@ -93,15 +89,13 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
           return 4;
         })
         break;
-      case "+": case "-": case "PageUp": case "PageDown": 
-      console.log(e.key)
-        const direction = (e.key === "+" || e.key === "PageUp") ? (1) : (-1);;
+      case "+": case "-": case "PageUp": case "PageDown":
+        const direction = (e.key === "+" || e.key === "PageUp") ? (1) : (-1);
         const videos = document.querySelectorAll(".video")
         setCurrentCh(old => {
-          const up = (e.key === "+" || e.key === "PageUp") ? true : false;
           let next = (old + direction);
-          if (old === videos.length - 1 && up) next = 0;
-          if (next < 0 && !up) next = videos.length - 1;
+          if (old === videos.length - 1 && direction > 0) next = 0;
+          if (next < 0 && direction < 0) next = videos.length - 1;
           chRef.current = next;
           events.current[old].mute();
           events.current[next].unMute();

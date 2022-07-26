@@ -1,37 +1,30 @@
-import { useEffect, useState, useRef } from "react";
 import YouTube from 'react-youtube';
 //--Actual component--//
 
-
 const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
 
-
-
     function onReady(event) {
-
-
-        console.log(event.target)
-        events.current = [...events.current, event.target]
-        events.current.sort((a, b) => (a.id - b.id))
+        console.log("...");
+        events.current = [...events.current, event.target];
+        events.current.sort((a, b) => (a.id - b.id));
         setTimeout(() => {
             event.target.setShuffle(true);
-            if (event.target.getPlayerState() === -1) event.target.nextVideo();
-        }, 100)
+            event.target.nextVideo();
+        }, 100);
 
     }
 
     function onError(event) {
-        console.log('error:', event.target)
-        //event.target.nextVideo();
+        event.target.nextVideo();
     }
 
     function onEnd(event) {
-        console.log('End: ', event.target)
+        console.log('End: ', event.target);
     }
 
-    function onStateChange(event){
+    function onStateChange(event) {
         window.focus();
-        if(event.target.data<0) event.target.nextVideo();
+        if (event.target.data < 0) event.target.nextVideo();
     }
 
     return (
@@ -62,8 +55,7 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
                             },
                         }
                         return (
-
-                            <YouTube key={`${data.current.channels[i].name}`} style={{ display: `${(currentCh === i) ? "block": "none"}`}} 
+                            <YouTube key={`${data.current.channels[i].name}`} style={{ display: `${(currentCh === i) ? "block" : "none"}` }}
                                 className="video" id={`${data.current.channels[i].name}`}
                                 opts={opts}
                                 onReady={onReady}
@@ -71,15 +63,13 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
                                 onStateChange={onStateChange}
                                 onEnd={onEnd}
                             />
-
-                        )
-
+                        );
                     })
                 }
 
             </div>
         </>
-    )
+    );
 }
 
 export default VideoFrame;
