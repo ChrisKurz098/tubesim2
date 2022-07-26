@@ -21,26 +21,12 @@ const defaultChannels =     [
         { name: 'Ch: 18 - Scifi Movies', list: ['PLo6LMGdjaTzJ8y8OBialU_RVhIXg8HpLe'], episodes: 73, randPoint: 0 },
         { name: "Ch: 19 - Horror/SciFi Movies", list: ['PL2e8s2GMT08wtackx9qxf_cJZsTxVy0yL'], episodes: 200, randPoint: 0 },
         { name: "Ch: 20 - NFL 80s", list: ['PLAr_WbjGaCm5laqRScaYFlNiDSrLLW4rn'], episodes: 200, randPoint: 0 },
-        { name: "Ch: 21 - Vintage TV", list: ['PLVPqan6x_34F-M2lCiaTzRSX6jxyQbXcL'], episodes: 200, randPoint: 0 },
-        {name: "Ch: 22 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 23 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 24 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 25 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 26 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 27 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 28 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 29 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
-        {name: "Ch: 30 - Not Programmed",list: ["PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"],episodes: 1,randomPoint: null,},
 ];
 
-   
-    
-
-
 const statsSchema = new Schema({
-    lastCh: {
+    maxCh: {
         type: Number,
-        default: 0
+        default: 20
     },
     currentCh: {
         type: Number,

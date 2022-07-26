@@ -10,7 +10,7 @@ const typeDefs = gql`
 
   type Stats {
     _id: ID
-    lastCh: Int
+    maxCh: Int
   currentCh: Int
   volume: Int
   horShift: Int

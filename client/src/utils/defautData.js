@@ -1,5 +1,5 @@
 const  defaultData = {
-    "lastCh": 1,
+    "maxCh": 20,
     "currentCh": 0,
     "volume": 100,
     "horShift": 0,
@@ -281,96 +281,6 @@ const  defaultData = {
                 "PLAr_WbjGaCm5laqRScaYFlNiDSrLLW4rn"
             ],
             "episodes": 200,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 21 - Vintage TV",
-            "list": [
-                "PLVPqan6x_34F-M2lCiaTzRSX6jxyQbXcL"
-            ],
-            "episodes": 200,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 22 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 23 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 24 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 25 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 26 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 27 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 28 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 29 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
-            "randomPoint": null,
-            "__typename": "Channels"
-        },
-        {
-            "name": "Ch: 30 - Not Programmed",
-            "list": [
-                "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4"
-            ],
-            "episodes": 1,
             "randomPoint": null,
             "__typename": "Channels"
         }

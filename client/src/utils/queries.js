@@ -16,7 +16,7 @@ export const QUERY_ME_STATS = gql`
     me {
       _id
       stats {
-        lastCh
+        maxCh
         currentCh
         volume
         horShift

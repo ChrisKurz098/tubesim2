@@ -8,7 +8,7 @@ export const LOGIN_USER = gql`
         _id
         username
         stats {
-          lastCh
+          maxCh
           currentCh
           volume
           horShift
@@ -36,7 +36,7 @@ export const ADD_USER = gql`
         _id
         username
         stats {
-          lastCh
+          maxCh
           currentCh
           volume
           horShift
