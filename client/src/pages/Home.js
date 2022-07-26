@@ -28,7 +28,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     horSize: data.current.horSize,
     vertSize: data.current.vertSize
   });
-  const [currentCh, setCurrentCh] = useState(data.current.currentCh);
+  const [currentCh, setCurrentCh] = useState((data.current.currentCh > data.current.maxCh) ? data.current.maxCh-1 : data.current.currentCh);
   const chRef = useRef(currentCh);
 
   const [curVol, setCurVol] = useState(data.current.volume)
@@ -140,7 +140,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       window.addEventListener("keyup", logKeyUp);
       setLoadingPage(false);
       const videos = document.querySelectorAll(".video");
-      videos[data.current.currentCh].style.display = "block";
+      videos[currentCh].style.display = "block";
       events.current[currentCh].unMute();
     })
   }, [])

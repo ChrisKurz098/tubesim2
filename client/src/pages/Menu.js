@@ -1,14 +1,9 @@
-
 import Auth from '../utils/auth';
 import List from '../components/Menu/List';
 import Edit from '../components/Menu/Edit';
 import OverScan from '../components/Menu/Overscan';
 
 const Menu = ({ menuHover, menuSelection, setMenuSelection, data, ovrScn, setOvrScn, setMenuHover }) => {
-
- 
-
-
   if (Auth.loggedIn()) {
     return (
       <div className={(menuSelection === "overscan") ? ("translucent") : ("")}>
@@ -20,23 +15,15 @@ const Menu = ({ menuHover, menuSelection, setMenuSelection, data, ovrScn, setOvr
           <li className={(menuHover === 1) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("overscan")}>OverScan</li>
           <li className={(menuHover === 2) ? ('menuSelect') : ('menuOption')} >Clear Memory</li>
         </ul>
-
       </div>
     );
   } else {
     return (
       <>
         <div>Make an account for custom settings</div>
-
       </>
     );
-
   }
-
-
-
-
-
 };
 
 export default Menu;

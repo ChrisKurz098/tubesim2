@@ -35,6 +35,7 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
 
                 {
                     data.current.channels.map((e, i) => {
+                        if (i+1>data.current.maxCh) return false;
                         const rndList = Math.floor(Math.random() * e.list.length)
                         const playlist = (e.list[0]) ? e.list[0] : "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4";
                         const rnd = 1 //Math.floor(Math.random()*e.episodes);
