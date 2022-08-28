@@ -11,9 +11,10 @@ const Menu = ({ menuHover, menuSelection, setMenuSelection, data, ovrScn, setOvr
         {(menuSelection === 'edit') ? (<Edit data={data} setMenuHover={setMenuHover} />) : null}
         {(menuSelection === 'overscan') ? (<OverScan data={data} ovrScn={ovrScn} setOvrScn={setOvrScn} setMenuHover={setMenuHover} />) : null}
         <ul id='menuOptions'>
-          <li className={(menuHover === 0) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("edit")}>Channel Edit</li>
+          <li className={(menuHover === 0) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("edit")}>Ch Edit</li>
           <li className={(menuHover === 1) ? ('menuSelect') : ('menuOption')} onClick={() => setMenuSelection("overscan")}>OverScan</li>
           <li className={(menuHover === 2) ? ('menuSelect') : ('menuOption')} >Clear Memory</li>
+          <li className={(menuHover === 3) ? ('menuSelect') : ('menuOption')} >Save</li>
         </ul>
       </div>
     );

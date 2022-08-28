@@ -28,7 +28,7 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
     horSize: data.current.horSize,
     vertSize: data.current.vertSize
   });
-  const [currentCh, setCurrentCh] = useState((data.current.currentCh > data.current.maxCh) ? data.current.maxCh-1 : data.current.currentCh);
+  const [currentCh, setCurrentCh] = useState((data.current.currentCh > data.current.maxCh) ? data.current.maxCh - 1 : data.current.currentCh);
   const chRef = useRef(currentCh);
 
   const [curVol, setCurVol] = useState(data.current.volume)
@@ -64,14 +64,14 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
       case "ArrowRight":
         if (menuSelection === 'list') {
           setMenuHover(last => {
-            return (last === 2 && menuHover <= 2) ? (0) : (last + 1);
+            return (last === 3 && menuHover <= 3) ? (0) : (last + 1);
           })
         }
         break;
       case "ArrowLeft":
         if (menuSelection === 'list') {
           setMenuHover(last => {
-            return (last === 0 && menuHover <= 2) ? (2) : (last - 1);
+            return (last === 0 && menuHover <= 3) ? (3) : (last - 1);
           })
         }
         break;
@@ -83,6 +83,8 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
             case 1: setMenuSelection("overscan");
               break;
             case 2: setMenuSelection("list");
+              break;
+            case 3: saveToServer();
               break;
             default:
           }
@@ -121,20 +123,21 @@ const Home = ({ client, menuToggle, setMenuToggle }) => {
 
     }
   }
+  //Save to server function
+  function saveToServer(e) {
+    if (loggedIn) {
+      console.log('SAVING....');
+      let local = JSON.parse(localStorage.getItem('TubeSimData'));
+      local.currentCh = chRef.current;
+      console.log(local);
+      localStorage.setItem('TubeSimData', JSON.stringify(local));
+      updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
+      setMenuToggle(old => (false));
+    }
+  };
   //--Prep--/
   useEffect(() => {
 
-    //listen for window being unloaded and save local data if so
-    window.addEventListener("beforeunload", function (e) {
-      if (loggedIn) {
-        console.log('SAVING BEFORE CLOSE!');
-        let local = JSON.parse(localStorage.getItem('TubeSimData'));
-        local.currentCh = chRef.current;
-        console.log(local);
-        localStorage.setItem('TubeSimData', JSON.stringify(local))
-        updateStats({ variables: { localStats: localStorage.getItem('TubeSimData') } });
-      }
-    }, false);
     //listen for when page finishes loading all content
     window.addEventListener("load", () => {
       window.addEventListener("keyup", logKeyUp);
