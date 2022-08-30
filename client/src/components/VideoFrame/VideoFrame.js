@@ -1,5 +1,6 @@
 import YouTube from 'react-youtube';
 //--Actual component--//
+import Controls from '../Controls';
 
 const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
 
@@ -29,14 +30,15 @@ const VideoFrame = ({ data, events, loadingPage, ovrScn, currentCh }) => {
 
     return (
         <>
-            {(loadingPage) ? (<div id="loadingText">{`Getting ready. This may take some time...`}</div>) : null}
+            {(loadingPage) ? (<div id="loadingText">Getting ready. This may take some time...</div>) : null}
+            {(loadingPage) ? <Controls/> : ("")}
 
             <div id="videoFrame" style={{ "transform": `scaleX(${ovrScn.horSize}) scaleY(${ovrScn.vertSize}) translate(${ovrScn.horShift}px, ${ovrScn.vertShift}px)` }}>
 
                 {
                     data.current.channels.map((e, i) => {
                         if (i+1>data.current.maxCh) return false;
-                        const rndList = Math.floor(Math.random() * e.list.length)
+                        //const rndList = Math.floor(Math.random() * e.list.length)
                         const playlist = (e.list[0]) ? e.list[0] : "PLchOdr3NN1n3NZpeBRG-eukGB6Lo2HgY4";
                         const rnd = 1 //Math.floor(Math.random()*e.episodes);
                         const opts = {

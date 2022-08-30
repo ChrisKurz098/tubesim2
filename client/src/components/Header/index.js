@@ -10,7 +10,7 @@ const Header = ({menuToggle, setMenuToggle}) => {
   };
 
   return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center" id={(menuToggle) ? ('headerForceOn') : ('headerNormal')}>
+    <header className="bg-secondary mb-4 py-2 flex-row align-center translucent" id={(menuToggle) ? ('headerForceOn') : ('headerNormal')}>
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <Link to="/">
           <h1>TubeSim+</h1>

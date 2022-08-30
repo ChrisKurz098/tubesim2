@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 const Edit = ({ data, setMenuHover }) => {
-  //this disables main menu functinality to make way for new inputs
-  setMenuHover(4);
+  
+  setMenuHover(99);//this disables main menu key inputs by setting this value out of bounds. Makes way for sub-menu inputs
   const maxSelect = useRef(JSON.parse(localStorage.getItem('TubeSimData')).maxCh);
   const [maxChs,setMaxChs] = useState(new Array(maxSelect.current).fill(null));//this is used to create the channel number selection 
   const maxChSelection = new Array(30).fill(null)
