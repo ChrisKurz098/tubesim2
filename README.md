@@ -1,3 +1,3 @@
 ## TubeSim+
 
-[Link]{https://tubesim.herokuapp.com/}
+https://tubesim.herokuapp.com/
