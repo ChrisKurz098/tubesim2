@@ -27,7 +27,6 @@ app.use(express.json());
 app.use(
   '/graphql',
   cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] }),
-  json(),
   expressMiddleware(server),
 );
 
