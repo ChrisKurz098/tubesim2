@@ -26,8 +26,7 @@ app.use(express.json());
 
 app.use(
   '/graphql',
-  cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] }),
-  expressMiddleware(server),
+  cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] })
 );
 
  // Serve up static assets uncomment to run full app
