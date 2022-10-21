@@ -9,6 +9,8 @@ const cors = require('cors')
 
 const PORT = process.env.PORT || 3001;
 
+const app = express();
+
 const corsOption = {
   origin: ['https://tubesimplus.onrender.com/'],
 };
@@ -24,7 +26,7 @@ const server = new ApolloServer({
 });
 
 
-const app = express();
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
