@@ -20,20 +20,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const corsOption = {
-  origin: ['https://tubesimplus.onrender.com/'],
+  origin: ['https://tubesimplus.onrender.com/','https://tubesimplus.onrender.com/signup'],
 };
 app.use(cors(corsOption));
 
 
 
  // Serve up static assets uncomment to run full app
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+// }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
