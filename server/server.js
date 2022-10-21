@@ -9,6 +9,9 @@ const cors = require('cors')
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
+  cors: {
+		origin: '*',			// <- allow request from all domains
+		credentials: true},
   typeDefs,
   resolvers,
   context: authMiddleware,
@@ -19,10 +22,10 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const corsOption = {
-  origin: ['https://tubesimplus.onrender.com/','https://tubesimplus.onrender.com/signup'],
-};
-app.use(cors(corsOption));
+// const corsOption = {
+//   origin: ['https://tubesimplus.onrender.com/','https://tubesimplus.onrender.com/signup'],
+// };
+// app.use(cors(corsOption));
 
 
 
