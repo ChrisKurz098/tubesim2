@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// const corsOption = {
-//   origin: ['https://tubesimplus.onrender.com/'],
-// };
-app.use(cors());
+const corsOption = {
+  origin: ['https://tubesimplus.onrender.com/'],
+};
+app.use(cors(corsOption));
 
 const server = new ApolloServer({
   cors: {
