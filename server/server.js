@@ -11,14 +11,14 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-const corsOption = {
-  origin: ['https://tubesimplus.onrender.com/'],
-};
-app.use(cors(corsOption));
+// const corsOption = {
+//   origin: ['https://tubesimplus.onrender.com/'],
+// };
+app.use(cors());
 
 const server = new ApolloServer({
   cors: {
-		origin: 'https://tubesimplus.onrender.com',			// <- allow request from all domains
+		origin: 'https://tubesimplus.onrender.com',			// <- allow request from all domains with *
 		credentials: true},
   typeDefs,
   resolvers,
@@ -26,13 +26,8 @@ const server = new ApolloServer({
 });
 
 
-
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
-
-
 
 
  // Serve up static assets uncomment to run full app
