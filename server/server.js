@@ -24,10 +24,7 @@ const corsOption = {
 };
 app.use(cors(corsOption));
 
-// app.use(
-//   '/graphql',
-//   cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] })
-// );
+
 
  // Serve up static assets uncomment to run full app
 // if (process.env.NODE_ENV === 'production') {
@@ -35,7 +32,7 @@ app.use(cors(corsOption));
 // }
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
