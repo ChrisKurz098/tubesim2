@@ -8,6 +8,12 @@ const db = require('./config/connection');
 const cors = require('cors')
 
 const PORT = process.env.PORT || 3001;
+
+const corsOption = {
+  origin: ['https://tubesimplus.onrender.com/'],
+};
+app.use(cors(corsOption));
+
 const server = new ApolloServer({
   cors: {
 		origin: 'https://tubesimplus.onrender.com',			// <- allow request from all domains
@@ -23,10 +29,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const corsOption = {
-  origin: ['https://tubesimplus.onrender.com/','https://tubesimplus.onrender.com/signup'],
-};
-app.use(cors(corsOption));
+
 
 
 
