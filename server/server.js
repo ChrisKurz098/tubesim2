@@ -5,6 +5,7 @@ const path = require('path');
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
+const cors = require('cors')
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
@@ -18,15 +19,20 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const corsOption = {
+  origin: ['https://tubesimplus.onrender.com/'],
+};
+app.use(cors(corsOption));
+
 
 
  // Serve up static assets uncomment to run full app
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('https://tubesimplus.onrender.com/'));
+  app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.get('*', (req, res) => {
-  res.sendFile('https://tubesimplus.onrender.com/');
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
