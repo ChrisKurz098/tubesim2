@@ -19,15 +19,15 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// const corsOption = {
-//   origin: ['https://tubesimplus.onrender.com/','https://tubesimplus.onrender.com/signup'],
-// };
-// app.use(cors(corsOption));
+const corsOption = {
+  origin: ['https://tubesimplus.onrender.com/','https://tubesimplus.onrender.com/signup'],
+};
+app.use(cors(corsOption));
 
-app.use(
-  '/graphql',
-  cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] })
-);
+// app.use(
+//   '/graphql',
+//   cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] })
+// );
 
  // Serve up static assets uncomment to run full app
 // if (process.env.NODE_ENV === 'production') {
