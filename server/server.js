@@ -12,18 +12,19 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 const corsOption = {
-  origin: ['*'],
+  origin: '*',
+  credentials: true
 };
 
 const server = new ApolloServer({
-  cors: {
-		origin: '*',			// <- allow request from all domains with *
-		credentials: true},
+
   typeDefs,
   resolvers,
   context: authMiddleware,
 });
-
+// cors: {
+//   origin: '*',			// <- allow request from all domains with *
+//   credentials: true},
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -44,7 +45,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app, cors: false }); //needed to apply corsOption
   app.use(cors(corsOption));
-  
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
