@@ -20,7 +20,7 @@ import Signup from './pages/Signup';
 
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:10000/graphql',
+  uri: 'https://tubesimplusbackend.onrender.com/',
 });
 
 const authLink = setContext((_, { headers }) => {
