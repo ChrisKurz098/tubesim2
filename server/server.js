@@ -18,7 +18,7 @@ app.use(cors(corsOption));
 
 const server = new ApolloServer({
   cors: {
-		origin: 'https://tubesimplus.onrender.com',			// <- allow request from all domains with *
+		origin: '*',			// <- allow request from all domains with *
 		credentials: true},
   typeDefs,
   resolvers,
@@ -28,6 +28,7 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(res.header('Access-Control-Allow-Origin', '*'))
 
 
  // Serve up static assets uncomment to run full app
