@@ -25,7 +25,7 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-server.applyMiddleware({ app, cors: corsOption }); //needed to apply corsOption
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -55,3 +55,6 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
   // Call the async function to start the server
   startApolloServer(typeDefs, resolvers);
+
+
+  server.applyMiddleware({ app, cors: corsOption }); //needed to apply corsOption
