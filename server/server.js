@@ -25,10 +25,10 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-
+server.applyMiddleware({ app, cors: corsOptions });
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-//app.use(res.header('Access-Control-Allow-Origin', '*'))
+
 
 
  // Serve up static assets uncomment to run full app
