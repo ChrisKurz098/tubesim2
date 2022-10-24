@@ -20,7 +20,7 @@ import Signup from './pages/Signup';
 
 
 const httpLink = createHttpLink({
-  uri: 'https://tubesimplusbackend.onrender.com:10000',
+  uri: 'https://tubesimplusbackend.onrender.com',
 });
 
 const authLink = setContext((_, { headers }) => {
