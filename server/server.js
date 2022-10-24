@@ -20,7 +20,9 @@ const corsOptions = {
 
 const server = new ApolloServer({
   cors: {
-    origin: ["*"]
+    origin: ["*"],
+    preflightContinue: true,
+    allowedHeaders: true
   },
   typeDefs,
   resolvers,
