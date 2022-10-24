@@ -1,7 +1,6 @@
 const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
-const { expressMiddleware } = require('@apollo/server/express4');
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
@@ -13,12 +12,15 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// const corsOption = {
-//   origin: '*',
-//   credentials: true
-// };
+const corsOptions = {
+  origin: '*',
+  credentials: true
+};
 
 const server = new ApolloServer({
+  cors: {
+    origin: ["*"]
+  },
   typeDefs,
   resolvers,
   context: authMiddleware,
@@ -42,14 +44,10 @@ app.get('*', (req, res) => {
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
-  // server.applyMiddleware({ app, cors: false }); //needed to apply corsOption
-  // app.use(cors(corsOption));
-  app.use(
-    '/graphql',
-    cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] }),
-    json(),
-    expressMiddleware(server),
-  );
+
+  server.applyMiddleware({
+    cors: corsOptions,
+  });
 
   db.once('open', () => {
     app.listen(PORT, () => {
