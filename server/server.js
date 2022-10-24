@@ -9,10 +9,10 @@ const cors = require('cors')
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
-  cors: {
-    origin: ["https://tubesimplus.onrender.com"],
-    credentials: true
-  },
+  // cors: {
+  //   origin: ["https://tubesimplus.onrender.com"],
+  //   credentials: true
+  // },
   typeDefs,
   resolvers,
   context: authMiddleware,
@@ -22,7 +22,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 
  // Serve up static assets uncomment to run full app
