@@ -20,7 +20,7 @@ const corsOptions = {
 
 const server = new ApolloServer({
   cors: {
-    origin: ["*"],
+    origin: ["https://tubesimplus.onrender.com"],
     preflightContinue: true,
     credentials: true
   },
