@@ -5,6 +5,7 @@ const path = require('path');
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
+const cors = require('cors')
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
@@ -22,7 +23,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
+app.use(cors());
 
 
  // Serve up static assets uncomment to run full app
