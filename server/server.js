@@ -8,6 +8,11 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
+  cors: {
+    origin: ["https://tubesimplus.onrender.com"],
+    preflightContinue: true,
+    credentials: true
+  },
   typeDefs,
   resolvers,
   context: authMiddleware,
