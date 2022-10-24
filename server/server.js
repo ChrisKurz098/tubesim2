@@ -14,7 +14,8 @@ const app = express();
 
 const corsOptions = {
   origin: '*',
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 200,
 };
 
 const server = new ApolloServer({
@@ -29,13 +30,8 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 
-
-
- // Serve up static assets uncomment to run full app
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/index.html'));
@@ -45,9 +41,9 @@ app.get('*', (req, res) => {
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
 
-  server.applyMiddleware({
-    cors: corsOptions,
-  });
+  // server.applyMiddleware({
+  //   cors: corsOptions,
+  // });
 
   db.once('open', () => {
     app.listen(PORT, () => {
