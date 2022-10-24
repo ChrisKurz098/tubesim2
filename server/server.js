@@ -1,11 +1,13 @@
 const express = require('express');
 const {ApolloServer} = require('apollo-server-express');
 const path = require('path');
-
+const { expressMiddleware } = require('@apollo/server/express4');
 const {typeDefs, resolvers} = require('./schemas');
 const {authMiddleware} = require('./utils/auth');
 const db = require('./config/connection');
+
 const cors = require('cors')
+const {json} = require('body-parser')
 
 const PORT = process.env.PORT || 3001;
 
@@ -17,14 +19,11 @@ const app = express();
 // };
 
 const server = new ApolloServer({
-
   typeDefs,
   resolvers,
   context: authMiddleware,
 });
-// cors: {
-//   origin: '*',			// <- allow request from all domains with *
-//   credentials: true},
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -45,6 +44,12 @@ const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   // server.applyMiddleware({ app, cors: false }); //needed to apply corsOption
   // app.use(cors(corsOption));
+  app.use(
+    '/graphql',
+    cors<cors.CorsRequest>({ origin: ['https://tubesimplus.onrender.com/', 'https://studio.apollographql.com'] }),
+    json(),
+    expressMiddleware(server),
+  );
 
   db.once('open', () => {
     app.listen(PORT, () => {
