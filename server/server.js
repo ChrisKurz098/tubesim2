@@ -22,7 +22,7 @@ const server = new ApolloServer({
   cors: {
     origin: ["*"],
     preflightContinue: true,
-    allowedHeaders: true
+    credentials: true
   },
   typeDefs,
   resolvers,
