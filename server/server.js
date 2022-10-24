@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-const corsOption = {
-  origin: '*',
-  credentials: true
-};
+// const corsOption = {
+//   origin: '*',
+//   credentials: true
+// };
 
 const server = new ApolloServer({
 
@@ -43,8 +43,8 @@ app.get('*', (req, res) => {
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
-  server.applyMiddleware({ app, cors: false }); //needed to apply corsOption
-  app.use(cors(corsOption));
+  // server.applyMiddleware({ app, cors: false }); //needed to apply corsOption
+  // app.use(cors(corsOption));
 
   db.once('open', () => {
     app.listen(PORT, () => {
