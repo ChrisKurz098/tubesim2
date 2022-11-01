@@ -16,10 +16,10 @@ const corsOptions = {
 
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
-  cors: {
-    origin: ["https://tubesimplus.onrender.com"],
-    credentials: true
-  },
+  // cors: {
+  //   origin: ["https://tubesimplus.onrender.com"],
+  //   credentials: true
+  // },
   typeDefs,
   resolvers,
   context: authMiddleware,
@@ -27,19 +27,19 @@ const server = new ApolloServer({
 
 const app = express();
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(cors(corsOptions));
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(cors(corsOptions));
 
 
  // Serve up static assets uncomment to run full app
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
