@@ -18,9 +18,12 @@ import Menu from './pages/Menu';
 import Signup from './pages/Signup';
 
 
+const graphqlUrl =  process.env.NODE_ENV === 'production' 
+              ? '/graphql' 
+              : 'http://localhost:3001/graphql'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:10000/graphql',
+  uri: graphqlUrl,
 });
 
 const authLink = setContext((_, { headers }) => {
